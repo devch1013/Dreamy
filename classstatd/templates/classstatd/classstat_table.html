@@ -1,0 +1,49 @@
+{%extends 'base/sidebar_1.html'%}
+{%block content %}
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{%static 'teacher/teachermain.css'%}">
+</head>
+<body>
+<div class="container">
+    <h2>수업</h2>
+    <div class="smallcont">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="수업을 검색하세요..." title="Type in a name">
+    <a href="create/"><button>수업추가</button></a>
+    </div>
+    
+    <ul id="myUL" class="cont1">
+      {% for i in obj %}
+      <li><a href="{{i.class_code}}/">{{i.class_title}}</a></li>
+      {%endfor%}
+      
+    </ul>
+        </div>
+    
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+    
+
+</script>
+
+</body>
+</html>
+{%endblock%}

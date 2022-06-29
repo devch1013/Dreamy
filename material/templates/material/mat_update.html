@@ -1,0 +1,82 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>수정</title>
+    <link rel=stylesheet type="text/css" href="{%static 'material/materequipadd.css'%}">
+</head>
+
+<body>
+
+    <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+    <h2>재료/도구수정</h2>
+   <form class="addclass"  method="POST">{% csrf_token %}
+           
+            <div class="mename">
+            <label>재료<input type="radio" name="category" class="menameupd" {%if mat_obj.category == '재료'%} checked="checked" {%endif%} value="재료"></label>
+            <label>도구<input type="radio" name="category" class="menameupd" {%if mat_obj.category == '도구'%} checked="checked" {%endif%} value="도구"></label>
+            </div>
+            <div class="mename">
+            <label>이름</label>
+           <input type="text" name="mat_name" value="{{mat_obj.mat_name|default_if_none:""}}" class="menameupd" placeholder="이름을 입력하세요...">
+            </div>
+        <br>
+              <div class="meshop">
+            <label>공급업체</label>
+           <input type="text" name="mat_shop" value="{{mat_obj.mat_shop|default_if_none:""}}"  class="meshopupd" placeholder="공급업체를 입력하세요...">
+            </div>
+        <br>
+      <div class="cate">
+            <label>주문링크</label>
+        <input type="text" name="mat_link" value="{{mat_obj.mat_link|default_if_none:""}}" class="cateupd" placeholder="주문링크를 입력하세요...">
+            </div>
+        <br>
+            <div class="meprice">
+            <label>공급가</label>
+           <input type="text" name="mat_price" value="{{mat_obj.mat_price|default_if_none:""}}" class="mepriceupd" placeholder="공급가를 입력하세요...">
+            </div>
+        <br>
+            <div class="mehous">
+            <label>창고위치</label>
+           <input type="text" name="mat_loc" value="{{mat_obj.mat_loc|default_if_none:""}}" class="mehousupd" placeholder="창고위치를 입력하세요...">
+            </div>
+        <br>
+        <div class="cate">
+            <label>재고수량</label>
+        <input type="text" name="mat_inven" value="{{mat_obj.mat_inven|default_if_none:""}}" class="cateupd" placeholder="재고수량을 입력하세요...">
+            </div>
+        <br>
+        <div class="cate">
+            <label>단위</label>
+        <select name="mat_unit">
+            <option value="{{mat_obj.mat_unit}}">{{mat_obj.mat_unit}}</option>
+            <option value="mm">mm</option>
+            <option value="m">m</option>
+            <option value="개">개</option>
+            <option value="m2">m<sup>2</sup></option>
+            <option value="g">g</option>
+        </select>
+            
+            </div>
+            <br>
+        <div class="cate">
+            <label>메모</label>
+        <input type="text" name="mat_memo" value="{{mat_obj.mat_memo|default_if_none:""}}" class="cateupd" placeholder="메모를 입력하세요...">
+            </div>
+        
+          <button type="submit" class="button3">수정</button>
+    </div>
+         </form>
+
+
+        
+</body>
+</html>
+<script>
+ window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+</script>

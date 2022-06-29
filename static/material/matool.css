@@ -1,0 +1,142 @@
+*{
+    font-family: 'Noto Sans KR';
+    letter-spacing: 1px;
+}
+
+td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}
+
+tbody {
+    text-align: center;
+    word-break: break-all;
+}
+
+.add {
+    width: 65px;
+    height: 32px;
+}
+
+.top {
+    width: 65px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.child {
+    text-align: left;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+    height: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.left {
+    width: 40%;
+    float: left;
+    text-align: right;
+    margin-left: 25%;
+}
+
+
+.bottom {
+    width:170px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 380px;
+}
+
+.btn {
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 350px;
+}
+
+.btn button {
+     font-size: 16px;
+}
+
+.banner h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.item select {
+    width: 155px;
+    height: 35px;
+}
+
+.item input[type=date] {
+    height: 35px;
+    width:160px;
+}
+
+.testbox .item input {
+    height: 35px;
+}
+
+.item .won {
+    width: 135px;
+}
+.item textarea {
+    width: 155px;
+}
+
+.testbox {
+    font-size: 18px;
+}
+
+.display a {
+    text-decoration: none;
+    color: green;
+    cursor: pointer;
+}
+.all {
+    width: 100%;
+    
+}
+
+.display {
+    table-layout: fixed;
+    width: 100% !important;
+}

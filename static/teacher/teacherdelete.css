@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+body {
+    width: 400px;
+    height: 200px;
+}
+.main{
+    width: 400px;
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #273449;
+    background-size: 500px 500px;
+    background-repeat: no-repeat;
+
+  }
+
+h2 {
+    padding-top: 50px;
+    padding-left: 110px;
+    font-size: 20px;
+    position: absolute;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    color: rgba(20,195,154,1);
+}
+
+a {
+    color: white;
+}
+
+
+.button2 {
+  border: none;
+  padding: 3px 7px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px 30px;
+  cursor: pointer;
+  float: right;
+border-radius: 10px;
+  color: #273449;
+    background-color: rgba(20,195,154,1);
+;
+}
+
+.button2:hover {
+    box-shadow: 3px 3px 3px rgba(101, 101, 101, 0.43);
+}
+
+
+
+.show {display: block;}
+
+
+.main .button3{
+  background-color: rgba(20,195,154,1);
+  border: none;
+  padding: 10px 25px;
+    margin-right: 30px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 10px; 
+  cursor: pointer;
+  float: center;
+  color: #273449;
+ border-radius: 10px;
+    
+}
+
+.main .buttondelete{
+  background-color: #ff0000;
+  border: none;
+  padding: 10px 25px;
+    margin-right: 30px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 10px; 
+  cursor: pointer;
+  float: center;
+  color: white;
+ border-radius: 10px;
+    
+}
+
+.button3:hover {
+    box-shadow: 3px 3px 3px rgba(101, 101, 101, 0.43);
+}
+
+.buttondelete:hover {
+    box-shadow: 3px 3px 3px rgba(101, 101, 101, 0.43);
+}
+
+
+
+.submit {
+    text-align: center;
+    float: right;
+    margin-right: 50px;
+}
+
+
+
+
+.btnparty {
+    bottom: 0;
+
+    padding-left: 90px;
+}
+
+p {
+    color: white;
+    text-align: center;
+    padding-top: 90px;
+}

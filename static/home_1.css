@@ -1,0 +1,198 @@
+
+*{
+    font-family: 'Noto Sans KR';
+    letter-spacing: 1px;
+}
+
+body {
+    background-color: #efefef;
+    margin: 0;
+}
+
+.time {
+    background-color: white;
+    float: left;
+    width: 33%;
+    height: 300px;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px #dddddd;
+}
+
+.time h1 {
+    font-size: 16px;
+    margin-left: 10px;
+    float: left;
+}
+
+.time h2 {
+    font-size: 12px;
+    margin-top: 15px;
+    float: right;
+    font-weight: lighter;
+}
+
+.time button {
+    float: right;
+    margin: 10px;
+}
+
+.time textarea {
+    width: 90%;
+    margin-left: 10px;
+    font-size: 18px;
+    padding: 15px 10px 10px 15px;
+    margin-bottom: 10px;
+    height: 220px;
+    font-family: 'Noto Sans KR';
+}
+
+
+.time ul li {
+    text-align: center;
+    list-style-type: none;
+}
+
+.notices {
+    background-color: white;
+    float: left;
+    width: 33%;
+    height: 300px;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px #dddddd;
+}
+
+.notices h1 {
+    font-size: 16px;
+    margin-left: 10px;
+    float: left;
+}
+
+.notices h2 {
+    font-size: 12px;
+    margin-top: 15px;
+    float: right;
+    font-weight: lighter;
+}
+
+.notices button {
+    float: right;
+    margin: 10px;
+}
+
+.notices textarea {
+    width: 90%;
+    margin-left: 10px;
+    font-size: 18px;
+    padding: 15px 10px 10px 15px;
+    margin-bottom: 10px;
+    height: 220px;
+    font-family: 'Noto Sans KR';
+}
+
+
+
+.todaysteacher {
+    background-color: white;
+    float: left;
+    width: 33%;
+    height: 300px;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px #dddddd;
+    display: grid;
+}
+
+.todaysteacher h1 {
+    font-size: 16px;
+    margin-left: 10px;
+    float: left;
+}
+
+.todaysteacher .name-aligning {
+    list-style-type: none;
+    width: 90%;
+    height:  220px;
+    padding-inline-start: 0px;
+    margin-left: 40px;
+}
+
+.todaysteacher .name-aligning li{
+    display: block;
+    width: 24%;
+    padding: 10px 0px 10px 0px;
+    float: left;
+}
+.todaysclass {
+    background-color: white;
+    float: left;
+    width: 66%;
+    margin: 10px;
+    margin-right: 10px;
+    box-shadow: 2px 2px 2px 2px #dddddd;
+    display: grid;
+}
+
+.todaysclass .today {
+    width: 170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.todaysclass h1 {
+    font-size: 30px;
+    margin-top: -10px;
+    margin-bottom: 0px;
+}
+
+.todaysclass table {
+    width: 98%;
+    margin-left: 10px;
+}
+
+.statistics {
+    background-color: white;
+    float: left;
+    width: 33%;
+    margin: 10px;
+    margin-left: 10px;
+    box-shadow: 2px 2px 2px 2px #dddddd;
+}
+
+.firstrow {
+    display: flex;
+}
+
+.secondrow {
+    display: flex;
+}
+
+
+.todaysteacher table {
+	width: 100%;
+	background-color: white;
+}
+
+.todaysteacher table th, td {
+    padding: 5px 0px 5px 0px;
+}
+
+table > thead > tr > th {
+	font-weight: 400;
+	color: #fff;
+	background-color: #6d78ad;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+table > tbody > tr > td {
+	text-align: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.table-container {
+	height: 300px;
+	overflow: auto;
+}
+
+.fixedHeader {
+	position: sticky;
+	top: 0;
+}

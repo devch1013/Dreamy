@@ -1,0 +1,223 @@
+{%extends 'base/sidebar_1.html'%}
+{%load static%}
+{%block content %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
+	<title>학교</title>
+           <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css"/>
+    
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/keytable/2.5.1/css/keyTable.dataTables.min.css"/>
+
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+     <link rel="stylesheet" type="text/css" href="classd.css">
+    
+        
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchpanes/1.0.1/css/searchPanes.dataTables.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="datatables.min.css">
+    <link rel="stylesheet" href="{%static 'teacher/teacherdetail1.css'%}">
+</head>
+<body>
+    <div class="all">
+     <div class="toptop">
+    <div class="detail1">
+    개인별
+    </div>
+    <div class="detail2">
+    강사료
+    </div>
+        </div>
+        <div class="head">
+            <h5>{{obj.tea_name}}</h5>
+    </div>
+    
+        <div class="header">
+          <form method='POST' enctype="multipart/form-data">{%csrf_token%}
+    <div class="smallcont">
+            <div class="monthly" id="mycalendar"></div>
+        </div>
+    <div class="smallcont2">
+        <div class="nextvisit">
+                    <h4>다음 방문일:</h4>
+                <input type="date" name="tea_next_visit" value="{{obj.tea_next_visit|date:"Y-m-d"}}" class="fly">
+        </div>
+        <div class="teainfo">
+        <div class="button_cont2" align="center"><a class="button3">강사정보</a></div>
+            
+              <table class="table3">
+            
+            <tbody><tr>
+          <th>담당분야</th>
+                    <td><input type="text" name="tea_prof" value="{{obj.tea_prof|default_if_none:""}}"></td>
+               </tr>
+                <tr>
+          <th>전화번호</th>
+                    <td><input type="text" name="tea_tel" value="{{obj.tea_tel|default_if_none:""}}"></td>
+               </tr>
+               <tr>
+          <th>이메일</th>
+                    <td><input type="text" name="tea_email" value="{{obj.tea_email|default_if_none:""}}"></td>
+               </tr>
+                <tr>
+          <th>주소</th>
+                    <td><input type="text" name="tea_address" value="{{obj.tea_address|default_if_none:""}}"></td>
+               </tr>
+               <tr>
+          <th>은행</th>
+                    <td><input type="text" name="tea_bankname" value="{{obj.tea_bankname|default_if_none:""}}"></td>
+               </tr>
+               <tr>
+          <th>계좌번호</th>
+          <td><input type="text" name="tea_bankacc" value="{{obj.tea_bankacc|default_if_none:""}}"></td>
+                   
+               </tr>
+
+          </tbody>
+            </table>
+                <button class="button0" name="tea_update" type="submit">수정</button>
+                
+        </div>
+        
+        
+         <div class="teafile">
+        <div class="button_cont3" align="center"><a class="button4">강사서류</a></div>
+             <div class="file">
+                 <table class="filetable">
+                      <tbody><tr>
+          <th><label><a {%if obj.tea_doc_cv%}   href="{{obj.tea_doc_cv.url}}" download {%endif%}>이력서</a></label></th>
+                    <td><input type="file" name="tea_doc_cv" ></td>
+                          <td><button class="button" name="tea_doc_cv_input" type="submit">업로드</button></td>
+               </tr>
+                <tr>
+          <th><label><a {%if obj.tea_doc_card%}   href="{{obj.tea_doc_card.url}}" download {%endif%}>강사카드</a></label></th><td><input type="file" name="tea_doc_card"></td>
+                    <td><button class="button" name="tea_doc_card_input" type="submit">업로드</button></td>
+               </tr>
+               <tr>
+          <th><label><a {%if obj.tea_doc_bankacc%}   href="{{obj.tea_doc_bankacc.url}}" download {%endif%}>통장사본</a></label></th>
+                    <td><input type="file" name="tea_doc_bankacc"></td>
+                   <td><button class="button" name="tea_doc_bankacc_input" type="submit">업로드</button></td>
+               </tr>
+                <tr>
+          <th><label><a {%if obj.tea_doc_agree%}   href="{{obj.tea_doc_agree.url}}" download {%endif%}>성범죄조회<br>동의서</a></label></th>
+                    <td><input type="file" name="tea_doc_agree"></td>
+                    <td><button class="button" name="tea_doc_agree_input" type="submit">업로드</button></td>
+               </tr>
+               <tr>
+          <th><label><a {%if obj.tea_doc_sign%}   href="{{obj.tea_doc_sign.url}}" download {%endif%}>싸인</a></label></th>
+                    <td><input type="file" name="tea_doc_sign"></td>
+                   <td><button class="button" name="tea_doc_sign_input" type="submit">업로드</button></td>
+               </tr>
+
+          </tbody>
+
+        </table>
+             </div>
+        
+        </div>
+
+    </div>
+  </form>
+            
+    <div class='smallcont3'>
+         <div class="button_cont3" align="center"><a class="button5">반출입</a>
+          </div>
+        <div class="inout">
+    <table class="todaysclass">
+        <colgroup>
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+        </colgroup>
+    <thead>
+        <tr>
+        <th>방문일</th>
+        <th>구분</th>
+        <th>수업</th>
+        <th>인원</th>
+        </tr>
+    </thead>
+        <tbody>
+          {%for i in class_obj%}
+
+        <tr>
+        <td>{{i.class_tea_inout_date|date:"Y/m/d"}}</td>
+            <td><a href="inout/{{i.class_id}}/">{{i.class_tea_inout|default_if_none:""}}</a></td>
+        <td>{{i.class_stat|default_if_none:""}}</td>
+            <td>{{i.class_stunum|default_if_none:""}}</td>
+        </tr>
+        
+        {%endfor%}
+</tbody>
+    </table>    
+
+        </div>
+        
+        </div>
+    </div>
+        </div>
+    <script src="{%static 'teacher/teacherdetail.js'%}"></script>
+<script type="text/javascript" src= "https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src= "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    
+    
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+    <script src="https://cdn.datatables.net/keytable/2.5.1/js/dataTables.keyTable.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="datatables.min.js"></script>
+<script type="text/javascript" src="{%static 'teacher/teacherdetail2.js'%}"></script>
+<script type="text/javascript" src="{%static 'teacher/teacherdetail.js'%}"></script>
+<script type="text/javascript">
+
+   var sampleEvents = {
+  "monthly": [
+{%for i in class_obj%}
+    {
+    "id": "{{forloop.counter}}",
+    "name": "{{i.class_sch|default_if_none:""}} {{i.class_stat|default_if_none:""}} {{i.class_time|default_if_none:""}} {{i.class_stunum|default_if_none:""}}",
+    "startdate": "{{i.class_date|date:"Y-m-d"}}",
+    "enddate": "",
+        "starttime": "",
+    "endtime": "",
+    "color": "#48415d",
+    "url": "/class/{{i.class_id}}/"
+    },
+{%endfor%}    
+      
+        ]
+   };
+
+   $(window).load( function() {
+      $('#mycalendar').monthly({
+         mode: 'event',
+         dataType: 'json',
+         events: sampleEvents
+      });
+   });
+</script>
+    
+     
+</body>
+</html>
+{%endblock%}

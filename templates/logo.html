@@ -1,0 +1,23 @@
+
+<span class="mx-auto">
+{% block content %}
+<h1>{{ title }}</h1>
+
+{% endblock %}
+</span>
+<a href="home/">
+<button>home</button>
+</a>
+</br>
+{{user.is_authenticated}}
+{% if not user.is_authenticated%}
+<br>
+<a href="login/">
+<button>login</button>
+</a>
+{%else%}
+<br>
+<a href="logout/">
+<button>logout</button>
+</a>
+{%endif%}

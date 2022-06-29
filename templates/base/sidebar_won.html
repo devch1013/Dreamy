@@ -1,0 +1,86 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
+   <title>DREAMY 온드림에듀</title>
+   <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="shortcut icon" type="image⁄x-icon" href="/static/Logo3.png">
+    <link rel="stylesheet" href="{%static 'sidebar.css'%}">
+</head>
+    <body>
+
+<div class="all-sb">
+<div class="left-sb">
+<div class="wrapper-sb">
+    <div class="sidebar-sb">
+
+        <div>
+        {% if user.is_authenticated %}
+        <a class="buttonadd-sb" href="/logout/"><div class="button_cont-sb" align="center">로그아웃</div></a>
+        {%else%}
+        <a class="buttonadd-sb" href="/login/"><div class="button_cont-sb" align="center">로그인</div></a>
+        {%endif %}
+            </div>
+        
+        <div class="scale-up-center">
+        {%if user.profile_image %}
+        <img src="{{user.profile_image.url}}" width="100px">
+        {%else%}
+        <img src="{%static 'user3.png'%}" width="100px">
+        {%endif%}
+       </div>
+        
+       <div class="top-sb">
+        <h2>{{user.user_name}} {{user.user_position}}님</h2>
+        <h5 id='time-result'></h5>
+       
+
+    </div>
+         <div class="middle-sb" id="sidebar">
+        <ul class="listsb">
+            {%if user.user_position == '강사'%}
+            <li class="active9"><a href="/teacherout/" ><i class="fas fa-sign-out-alt" aria-hidden="true"></i>Teacher In/Out</a></li>
+            {%else%}
+            <li class="active"><a href="/home/"><i class="fas fa-home" aria-hidden="true"></i>Home</a></li>
+            <li class="active2"><a href="/class/"><i class="fas fa-tasks" aria-hidden="true"></i>Class</a></li>
+            <li class="active3"><a href="/order/" ><i class="fas fa-shopping-cart" aria-hidden="true"></i>Order</a></li>
+            <li class="active4"><a href="/teacher/" ><i class="fas fa-address-card" aria-hidden="true"></i>Teacher</a></li>
+            <li class="active5"><a href="/school/"><i class="fas fa-school" aria-hidden="true"></i>School</a></li>
+             <li class="active6"><a href="/delivery/" ><i class="fas fa-truck" aria-hidden="true"></i>Delivery</a></li>
+            <li class="active7"><a href="/inventory/" ><i class="fas fa-boxes" aria-hidden="true"></i>Material Tools</a></li>
+            <li class="active8"><a href="/class_data/" ><i class="fas fa-database" aria-hidden="true"></i>Recipes</a></li>
+            {%endif%}
+            
+        </ul> 
+              <div class="bottom-sb">
+        <h4>ONDREAMEDU</h4>
+        <div class="rotate-center">
+          <a href="#"><img src="{% static 'Logo3.png'%}" width="30px" height="35px"></a>
+      </div>
+  </div>
+    </div>
+</div>
+    </div>
+    </div>
+
+<div class="right-sb">
+{%block content%}
+{%endblock%}
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var d = new Date();
+    if(d.getHours()>=12){
+        var result = document.getElementById("time-result");
+        result.innerHTML = "<h3>신나고 행복한 오후입니다!</h3>";
+    }
+    else{
+        var result = document.getElementById("time-result");
+        result.innerHTML = "<h3>상쾌하고 좋은 오전입니다!</h3>";
+    }
+</script>
+</html>

@@ -1,0 +1,162 @@
+﻿{%extends 'base/sidebar_1.html'%}
+{%load static%}
+{%block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{%static 'teacher/teacherdetail2.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css"/>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/keytable/2.5.1/css/keyTable.dataTables.min.css"/>
+
+    
+
+    <body>
+        <form method="POST" >{%csrf_token%}
+            <div class="container">
+                <div class="toptop">
+                    <div class="detail1">
+                        개인별
+                    </div>
+                    <div class="detail2">
+                        강사료
+                    </div><button class="newrow" name="addrow" type="submit">새로운 비용처리 추가</button>
+                </div>
+
+                <span class="excel">
+                    <h2>강사료 지급 명세서</h2>
+                    <h3>{{teapay_monthly.tp_year}}년 {{teapay_monthly.tp_month}}월</h3>
+                    <br>
+                    <h4>{{teapay_monthly.tp_teakey.tea_name}} 선생님 귀하</h4>
+                    <br>
+                    <table class="inside" id="tblExport">
+                        <colgroup>
+                           <col span="1" style="width: 9%;">
+                           <col span="1" style="width: 11%;">
+                           <col span="1" style="width: 10%;">
+                           <col span="1" style="width: 11%;">
+                           <col span="1" style="width: 10%;">
+                           <col span="1" style="width: 10%;">
+                           <col span="1" style="width: 10%;">
+                           <col span="1" style="width: 10%;">
+                       </colgroup>
+                       <thead>
+                        <tr>
+                            <th>날짜</th>
+                            <th>학교</th>
+                            <th>구분</th>
+                            <th>반</th>
+                            <th>강사료</th>
+                            <th>세금</th>
+                            <th>세후 강사료</th>
+                            <th>직접 입금</th> 
+                        </tr>
+                    </thead>    
+                    <tbody>
+                        {%for i in teapay%}
+                        <tr>
+                            <td>{{i.tp_classkey.class_date|date:"Y-m-d"}}</td>
+                            <td>{{i.tp_classkey.class_schkey.sch_name|default_if_none:""}}</td>
+                            <td>{{i.tp_classkey.class_cate|default_if_none:""}}</td>
+                            <td>{{i.tp_classkey.class_minicate|default_if_none:""}}</td>
+                            <td><input type="number" id="input-value" {%if i.tp_classkey.class_pay == "온드림지급"%} name="tp_pay[]" value="{{i.tp_pay}}" {%else%}disabled="disabled"{%endif%}>원</td>
+                            <td><input type="number"  id="output-value" value="{{i.tp_tax}}" {%if i.tp_classkey.class_pay == "학교지급"%} disabled="disabled"{%endif%} >원</td>
+                            <td><input type="number" id="output-value2" value="{{i.tp_atax}}" {%if i.tp_classkey.class_pay == "학교지급"%} disabled="disabled"{%endif%} />원</td>
+                            <td><input type="number" {%if i.tp_classkey.class_pay == "학교지급"%} name="tp_pay[]" value="{{i.tp_pay}}" {%else%} disabled="disabled"{%endif%}>원</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                <br>
+                <div class="beforecheckout">
+                 <table class="insidy" id="myTable">
+                    <colgroup>
+                       <col span="1" style="width: 20%;">
+                       <col span="1" style="width: 10%;">
+                       <col span="1" style="width: 5%;">
+                   </colgroup>
+                   <thead><tr>
+
+                    <th>내용</th>
+                    <th>비용</th>
+                    <th></th>
+                </tr>
+            </thead>    
+            <tbody>
+                {%for i in teapay_ex%}
+                <tr>
+                    <td><input value="{{i.tp_content|default_if_none:""}}" name="content[]" type="text"></td>
+                    <td><input value="{{i.tp_pay|default_if_none:""}}" name="teapay[]" type="number" value="60000">원</td>
+                    <td><a class="delete_pay" value="1" href="#">삭제</a></td>
+                </tr>
+                {%endfor%}
+                
+            </tbody>
+        </table>
+        
+        <button name="submit" type="submit">저장</button>
+
+        <div class="checkout">
+            <h4>{{teapay_monthly.tp_month}}월 입금 강사료: {{teapay_monthly.tp_monthly_pay}}원</h4>
+
+        </div>
+    </div>
+</span>
+</div>
+</form>
+
+<div id="img-out"></div>
+
+<script type="text/javascript" src= "https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src= "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdn.datatables.net/keytable/2.5.1/js/dataTables.keyTable.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="datatables.min.js"></script>
+<script>
+var $output = $("#output-value");
+$("#input-value").keyup(function() {
+    var value = parseFloat($(this).val());
+    $output.val(value*0.033);
+});
+var $output1 = $("#output-value2");
+$("#input-value").keyup(function() {
+    var value1 = parseFloat($(this).val());
+    $output1.val(value1*0.967);
+});
+
+
+</script>
+<script type="text/javascript">
+/*
+
+function theFuncToCall(event){
+  document.getElementById("delete_pay_result").value = event.target.value;
+
+}
+
+$(document).on('click', '.delete_pay', theFuncToCall);
+
+*/
+</script>
+
+
+</body>
+</html>
+{%endblock%}

@@ -1,0 +1,712 @@
+﻿{%extends 'base/sidebar_1.html'%}
+{%load static%}
+{%block content%}
+<html><head></head><body>
+
+
+  <title>수업 진행상황</title>
+
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <link rel="stylesheet" href="{%static 'classd/progress.css'%}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<form class="addclass" method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
+  <div class="container">
+    <div class="align">
+      <div id="myBtn" class="button1">정보수정</div>
+    </div>
+
+      <div class="rowdata">  
+        <table class="table1">
+          <colgroup>
+           <col span="1" style="width: 10%;">
+           <col span="1" style="width: 15%;">
+           <col span="1" style="width: 20%;">
+           <col span="1" style="width: 15%;">
+           <col span="1" style="width: 20%;">
+           <col span="1" style="width: 25%;">
+           <col span="1" style="width: 10%;">
+           <col span="1" style="width: 10%;">
+           <col span="1" style="width: 10%;">
+           <col span="1" style="width: 10%;">
+
+         </colgroup>
+         <tbody>
+          <tr>
+          <th>코드</th>
+          <th>날짜</th>
+          <th>학교</th>
+          <th>구분</th>
+          <th>반</th>
+          <th>수업</th>
+          <th>강사</th>
+          <th>인원</th>
+          <th>시간</th>
+          <th>장소</th>
+        </tr>
+        <tr>
+          <td>{{class_obj.class_id|default_if_none:""}}</td>
+          <td>{{class_obj.class_date|date:"Y-m-d"}}</td>
+          <td>{{class_obj.class_sch|default_if_none:""}}</td>
+          <td>{{class_obj.class_cate|default_if_none:""}}</td>
+          <td>{{class_obj.class_minicate|default_if_none:""}}</td>
+          <td>{{class_obj.class_stat|default_if_none:""}}</td>
+          <td>{{class_obj.class_tea|default_if_none:""}}</td>
+          <td>{{class_obj.class_stunum|default_if_none:""}}</td>
+          <td>{{class_obj.class_time|default_if_none:""}}</td>
+          <td>{{class_obj.class_place|default_if_none:""}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="progresstable">
+
+    <div class="align">
+
+      <div class="button_cont" align="center" >마지막 수정. {{class_obj.timestamp_progress|date:"Y-m-d P"}} {{class_obj.user_progress|default_if_none:""}}<button type="submit" name="save_progress" class="button2">저장</button></div>
+    </div>
+    <table class="table2">
+      <tbody>
+        <tr>
+          <th>진행</th>
+          <th>내용</th>
+          <th>완료</th>
+
+        </tr>
+        <tr>
+          <td></td>
+          <td>  <input id="16" name="class_confirm" type="radio" {%if class_obj.class_confirm == "확정" %} checked="checked" {%endif%} class="new-control-input" value="확정">확정 
+            <input id="16" name="class_confirm" type="radio" {%if class_obj.class_confirm == "미확정" %} checked="checked" {%endif%} class="new-control-input" value="미확정">미확정
+            <br>
+            <input id="16" name="class_3" type="radio" {%if class_obj.class_3 == "온드림에듀" %} checked="checked" {%endif%} class="new-control-input" value="온드림에듀">온드림에듀 
+            <input id="16" name="class_3" type="radio" {%if class_obj.class_3 == "미래아카데미" %} checked="checked" {%endif%} class="new-control-input" value="미래아카데미">미래아카데미
+            <input id="16" name="class_3" type="radio" {%if class_obj.class_3 == "드림아트" %} checked="checked" {%endif%} class="new-control-input" value="드림아트">드림아트</td>
+          </tr>
+
+          <tr>
+            <td>서류제출</td> 
+            <td><input id="4" name="class_doc_plan" type="checkbox" class="new-control-input" {%if class_obj.class_doc_plan %} checked="checked" {%endif%} value="7.142857142857143">수업계획서
+              <br>
+              <input id="5" name="class_doc_preestim" type="checkbox" class="new-control-input" {%if class_obj.class_doc_preestim %}checked="checked" {%endif%} value="7.142857142857143">견적서
+              <input id="16" name="class_doc_preestim_meth" type="radio" {%if class_obj.class_doc_preestim_meth == "강사료포함" %} checked="checked" {%endif%} class="new-control-input" value="강사료포함">강사료포함 
+              <input id="17" name="class_doc_preestim_meth" type="radio" {%if class_obj.class_doc_preestim_meth == "강사료미포함" %} checked="checked" {%endif%} class="new-control-input" value="강사료미포함">강사료미포함
+              <br>
+              <input id="6" name="class_doc_tea" type="checkbox" class="new-control-input" {%if class_obj.class_doc_tea %} checked="checked" {%endif%} value="7.142857142857143">강사서류
+
+              <br>
+              <div class="fileupload">
+                <label><a {%if class_obj.class_file_preestim%}   href="{{class_obj.class_file_preestim.url}}" download {%endif%}>견적서</a></label>
+                <input type="file" name="class_file_preestim" >
+                <button class="button" name="class_file_preestim_input" type="submit">업로드</button>
+                <br>
+                <label><a {%if class_obj.class_file_plan%}   href="{{class_obj.class_file_plan.url}}" download {%endif%}>계획서</a></label>
+                <input type="file" name="class_file_plan" >
+                <button class="button" name="class_file_plan_input" type="submit">업로드</button>
+                <br>
+                <label><a {%if class_obj.class_file_tea%}   href="{{class_obj.class_file_tea.url}}" download {%endif%}>강사서류</a></label>
+                <input type="file" name="class_file_tea" >
+                <button class="button" name="class_file_tea_input" type="submit">업로드</button>
+              </div>
+            </td>
+            <td>                    </td>
+          </tr>  
+          <tr>
+            <td>재료주문</td>
+            <td><input id="4" name="class_order" type="checkbox" class="new-control-input" {%if class_obj.class_order %} checked="checked" {%endif%} value="1">완료</td>
+            <td>                     </td>
+          </tr> 
+          <tr>
+            <td>도착확인</td>
+            <td><input id="4" name="class_deli" type="checkbox" class="new-control-input" {%if class_obj.class_deli %} checked="checked" {%endif%} value="1">완료</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>수업준비</td>
+            <td><input name="class_mani" id="12" type="checkbox" class="new-control-input" {%if class_obj.class_mani %} checked="checked" {%endif%} value="7.142857142857143">작업
+              <br><input name="class_div" id="12" type="checkbox" class="new-control-input" {%if class_obj.class_div %} checked="checked" {%endif%} value="7.142857142857143">소분</td>
+              <td></td>
+            </tr> 
+            <tr>
+              <td><label for="id_class_taken"> 강사반출</label></td>
+              <td><input id="id_class_taken" name="class_taken" type="checkbox" class="new-control-input" {%if class_obj.class_taken %} checked="checked" {%endif%} value="5">완료</td>
+              <td></td>
+            </tr> 
+            <tr>
+              <td><label for="id_class_taken"> 수업진행</label></td>
+              <td><input id="id_class_taken" name="class_done" type="checkbox" class="new-control-input" {%if class_obj.class_done %} checked="checked" {%endif%} value="5">완료 
+              </td>
+
+              <td></td>
+            </tr> 
+            <tr>
+              <td>강사반입</td>
+              <td><input id="14" name="class_re_done" type="checkbox" class="new-control-input" {%if class_obj.class_re_done %} checked="checked" {%endif%} value="7.142857142857143">완료</td>
+              <td></td>
+            </tr> 
+            <tr>
+              <td>정산</td>
+              <td><input id="15" name="class_doc_finestim" type="checkbox" class="new-control-input" {%if class_obj.class_doc_finestim %} checked="checked" {%endif%} value="7.142857142857143">견적서
+                <br>
+                <input id="16" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "계산서" %} checked="checked" {%endif%} class="new-control-input" value="계산서">계산서 
+                <input id="17" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "현금영수증" %} checked="checked" {%endif%} class="new-control-input" value="현금영수증">현금영수증
+                <input id="18" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "카드결제" %} checked="checked" {%endif%} class="new-control-input" value="카드결제">카드결제 
+                <input id="19" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "현금" %} checked="checked" {%endif%} class="new-control-input" value="현금">현금
+                <br><input id="20" name="class_deposit_check" type="checkbox" class="new-control-input" {%if class_obj.class_deposit_check %} checked="checked" {%endif%} value="7.142857142857143">입금확인
+                <br>
+                <label><a {%if class_obj.class_file_finestim%}   href="{{class_obj.class_file_finestim.url}}" download {%endif%}>견적서</a></label>
+              <input type="file" name="class_file_finestim" >
+            <button class="button" name="class_file_finestim_input" type="submit">업로드</button>
+              <br>
+              <label><a {%if class_obj.class_file_cal%}   href="{{class_obj.class_file_cal.url}}" download {%endif%}>영수증</a></label>
+              <input type="file" name="class_file_cal" >
+            <button class="button" name="class_file_cal_input" type="submit">업로드</button>
+              </td>
+              <td>
+              </td>
+            </tr> 
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+
+      <div class="schinfo">
+        <table class="tablen">
+          <colgroup>
+           <col span="1" style="width: 5%;">
+           <col span="1" style="width: 25%;">
+         </colgroup>
+         <tbody><tr>
+          <th>단가</th>
+          <td><input name="class_price" value="{{class_obj.class_price|default_if_none:""}}" type="number">원</td>
+        </tr>
+        <tr>
+          <th>강사료</th>
+          <td><input name="class_tea_price" value="{{class_obj.class_tea_price|default_if_none:""}}" type="number">원</td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>
+           <input id="16" name="class_pay" type="radio" {%if class_obj.class_pay == "온드림지급" %} checked="checked" {%endif%} class="new-control-input" value="온드림지급">온드림지급
+           <input id="17" name="class_pay" type="radio" {%if class_obj.class_pay == "학교지급" %} checked="checked" {%endif%} class="new-control-input" value="학교지급">학교지급
+         </td>
+       </tr>
+     </tbody>
+   </table>
+
+
+   <div class="text-area">
+    <textarea id="id_memo" name="memo" class="noresize" rows="8" cols="50">{{class_obj.memo|default_if_none:""}}</textarea>
+
+  </div>
+</div>
+
+<div class="bottom">
+  <table class="table4">
+    <tbody>
+      <tr>
+        <th>학교 담당자</th>
+        <td>
+          <select class="selectschtea" name="schtea">
+            <option value="{{class_obj.schteakey.schtea_name}}">{{class_obj.schteakey.schtea_name}}</option>
+            {%for i in sch_tea%}
+            <option value="{{i.schtea_name}}">{{i.schtea_name}}</option>
+            {%endfor%}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>전화번호</th>
+        <td>{{class_obj.schteakey.schtea_tel1|default_if_none:''}}</td>
+      </tr>
+      <tr>
+        <th>이메일</th>
+        <td>{{class_obj.schteakey.schtea_email|default_if_none:''}}</td>
+      </tr>
+      <tr>
+        <th>학교코드</th>
+        <td>{{sch_obj.sch_code|default_if_none:''}}</td>
+      </tr>
+      <tr>
+        <th>학교전화번호</th>
+        <td>{{sch_obj.sch_tel|default_if_none:''}}</td>
+      </tr>
+      <tr>
+        <th>학교이메일</th>
+        <td>{{sch_obj.sch_email|default_if_none:''}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<div class="schinfo2">
+  <div class="recipetext"><h1>레시피정보</h1><h2>강사쌤들이 반출해야 하는 재료/도구 목록을 여기서 수정해주세요. <br>쌤들이 테블릿에서 반출/반입하려면 이 정보가 꼭 정확해야 해요!</h2> 
+
+    <a class="button0" href="#">레시피 바로가기<i class="fas fa-arrow-right" style="white" ></i></a>
+  </div>
+  <table class="table3">
+    <colgroup>
+      <col span="1" style="width: 10%;">
+      <col span="1" style="width: 20%;">
+      <col span="1" style="width: 20%;">
+      <col span="1" style="width: 20%;">
+      <col span="1" style="width: 20%;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>구분</th>
+        <th>품목</th>
+        <th>함량/단위</th>
+        <th>필요수량</th>
+        <th><a href="#" id="myBtn2">추가</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1조5인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1조5인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1조5인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1조5인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+      <tr> <td>재료</td>
+        <td>하바리움</td>
+        <td>50ml/1조5인</td>
+        <td><input class="hi" type="text"></td>
+        <td><a href="#" id="myBtn3">수정</a> / <a href="#" id="myBtn4">삭제</a></td>
+      </tr>
+
+    </tbody>
+
+  </table>
+</div>
+
+</div>
+
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="testbox">
+
+      <div class="banner">
+        <h1>수업정보수정</h1>
+      </div>
+      <div class="left">
+        <div class="item">
+          날짜:
+          <input type="date" value="{{class_obj.class_date|date:"Y-m-d"}}" name="class_date" />
+        </div>
+        <br>
+        <div class="item">
+          학교: 
+          <input type="text" list="datalistschool" value="{{class_obj.class_sch|default_if_none:""}}" onkeyup="ac(this.value)" name="class_sch"/ placeholder="ex)서현중학교">
+        </div>
+        <br>
+        <div class="item">
+          구분: 
+          <select  name="class_cate">
+            <option value="{{class_obj.class_cate|default_if_none:""}}">{{class_obj.class_cate|default_if_none:""}}</option>
+            <option value="동아리">동아리</option>
+            <option value="자유학년">자유학년</option>
+            <option value="돌봄교실">돌봄교실</option>
+            <option value="위클래스">위클래스</option>
+            <option value="학부모">학부모</option>
+            <option value="방과후">방과후</option>
+            <option value="진로체험">진로체험</option>
+            <option value="일일체험">일일체험</option>
+            <option value="교과체험">교과체험</option>
+            <option value="방학">방학</option>
+            <option value="다문화">다문화</option>
+            <option value="주민센터">주민센터</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+        <br>
+        <div class="item">
+          반: 
+          <input type="text"  value="{{class_obj.class_minicate|default_if_none:""}}" name="class_minicate"/ placeholder="ex)에코테라피반">
+        </div>
+        <br>
+        <div class="item">
+          수업: 
+          <input type="text" list="datalistclass" value="{{class_obj.class_stat|default_if_none:""}}" onkeyup="ac(this.value)" name="class_stat"/ placeholder="ex)생크림케이크 1호">
+        </div>
+        <br>
+        <div class="item">
+          강사: 
+          <input type="text" list="datalisttea" value="{{class_obj.class_tea|default_if_none:""}}" onkeyup="ac(this.value)" name="class_tea"/ placeholder="ex)권서현">
+        </div>
+        <br>
+      </div>
+      <div class="right">
+        <div class="item">
+          인원: 
+          <input type="text" value="{{class_obj.class_stunum|default_if_none:""}}" name="class_stunum"/ placeholder="ex)10명">
+        </div>
+        <br>
+        <div class="item">
+          시간: 
+          <input type="text" value="{{class_obj.class_time|default_if_none:""}}" name="class_time"/ placeholder="ex)1-2교시">
+        </div>
+        <br>
+        <div class="item">
+          장소: 
+          <input type="text" value="{{class_obj.class_place|default_if_none:""}}" name="class_place"/ placeholder="ex)가사실">
+        </div>
+
+        <br>
+
+
+      </div>
+      <div class="bottommodal">
+        
+        <div class="btn">
+          <button type="submit" name="class_update">수정</button>
+        </div>
+      </div>
+
+    </div>
+  </div> 
+
+</div>
+</form>
+
+<div id="myModal2" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content2">
+    <span class="close">&times;</span>
+    <div class="testbox">
+
+      <div class="banner">
+        <h1>레시피에 추가</h1>
+      </div>
+      <div class="center">
+        <div class="item">
+          구분
+          <select>
+            <option value="1">재료</option>
+            <option value="2">도구</option>
+          </select>
+        </div>
+        <br>
+        <div class="item">
+          품목
+          <input type="text" name="name"/ placeholder="ex)하바리움">
+        </div>
+        <br>
+        <div class="item">
+          사람단위: 
+          <input type="text" name="name"/ placeholder="ex)1인">
+        </div>
+        <br>
+        <div class="item">
+          함량: 
+          <input type="text" name="name"/ placeholder="ex)50ml">
+        </div>
+        <br>
+        <div class="item">
+          총 필요수량: 
+          <input type="text" name="name"/ placeholder="ex)500ml">
+        </div>
+      </div>
+      <div class="submit2">
+        <button type="submit" href="/">추가</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="myModal3" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content2">
+    <span class="close">&times;</span>
+    <div class="testbox">
+      <form action="/">
+        <div class="banner">
+          <h1>레시피 수정</h1>
+        </div>
+        <div class="center">
+          <div class="item">
+            구분
+            <select>
+              <option value="1">재료</option>
+              <option value="2">도구</option>
+            </select>
+          </div>
+          <br>
+          <div class="item">
+            품목
+            <input type="text" name="name"/ placeholder="ex)하바리움">
+          </div>
+          <br>
+          <div class="item">
+            사람단위: 
+            <input type="text" name="name"/ placeholder="ex)1인">
+          </div>
+          <br>
+          <div class="item">
+            함량: 
+            <input type="text" name="name"/ placeholder="ex)50ml">
+          </div>
+          <br>
+          <div class="item">
+            총 필요수량: 
+            <input type="text" name="name"/ placeholder="ex)500ml">
+          </div>
+        </div>
+        <div class="submit2">
+          <button type="submit" href="/">수정</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="myModal4" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content3">
+    <span class="close">&times;</span>
+    <div class="testbox">
+      <form action="/">
+        <div class="banner">
+          <h1>삭제</h1>
+        </div>
+        <div class="centery">
+          <div class="item">
+           삭제되는 내용:
+         </div>
+         <br>
+         <div class="item">
+          구분 | 품목 | 총 필요수량
+        </div>
+        <br>
+      </div>
+      <div class="submit2">
+        <button type="submit" class="delete" href="/">삭제</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<datalist id="datalistschool"> 
+  {%for i in update_sch_obj%}
+  <option value="{{i.sch_name}}"></option> 
+
+  {%endfor%}
+</datalist> 
+<datalist id="datalistclass"> 
+  {%for i in update_classstat_obj%}
+  <option value="{{i.class_title}}"></option> 
+
+  {%endfor%}
+</datalist> 
+<datalist id="datalisttea"> 
+  {%for i in update_tea_obj%}
+  <option value="{{i.tea_name}}"></option> 
+
+  {%endfor%}
+
+</datalist> 
+
+<script>
+
+var tags = [  
+"서현중학교",
+"찬혁고등학교"
+]; 
+
+/*list of available options*/ 
+   var n= tags.length; //length of datalist tags     
+
+   function ac(value) { 
+    document.getElementById('datalist').innerHTML = ''; 
+       //setting datalist empty at the start of function 
+       //if we skip this step, same name will be repeated 
+
+       l=value.length; 
+       //input query length 
+       for (var i = 0; i<n; i++) { 
+         if(((tags[i].toLowerCase()).indexOf(value.toLowerCase()))>-1) 
+         { 
+           //comparing if input string is existing in tags[i] string 
+
+           var node = document.createElement("option"); 
+           var val = document.createTextNode(tags[i]); 
+           node.appendChild(val); 
+
+           document.getElementById("datalist").appendChild(node); 
+                 //creating and appending new elements in data list 
+               } 
+             } 
+           } 
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+var modal2 = document.getElementById('myModal2');
+
+// Get the button that opens the modal
+var btn2 = document.getElementById("myBtn2");
+
+// Get the <span> element that closes the modal
+var span2 = document.getElementsByClassName("close")[1];
+
+// When the user clicks the button, open the modal 
+btn2.onclick = function() {
+  modal2.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() {
+  modal2.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal2) {
+    modal2.style.display = "none";
+  }
+}
+
+
+var modal3 = document.getElementById('myModal3');
+
+// Get the button that opens the modal
+var btn3 = document.getElementById("myBtn3");
+
+// Get the <span> element that closes the modal
+var span3 = document.getElementsByClassName("close")[2];
+
+// When the user clicks the button, open the modal 
+btn3.onclick = function() {
+  modal3.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span3.onclick = function() {
+  modal3.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal3) {
+    modal3.style.display = "none";
+  }
+}
+
+var modal4 = document.getElementById('myModal4');
+
+// Get the button that opens the modal
+var btn4 = document.getElementById("myBtn4");
+
+// Get the <span> element that closes the modal
+var span4 = document.getElementsByClassName("close")[3];
+
+// When the user clicks the button, open the modal 
+btn4.onclick = function() {
+  modal4.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span4.onclick = function() {
+  modal4.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal4) {
+    modal4.style.display = "none";
+  }
+};
+
+</script>
+
+
+
+</body>
+</html>
+{%endblock%}

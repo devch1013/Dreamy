@@ -1,0 +1,346 @@
+{%extends 'base/sidebar_1.html'%}
+{%block content%}
+{%load static%}
+<html>
+<head>
+  
+</head>
+<body>
+
+
+
+<title>수업 진행상황</title>
+  <link rel="stylesheet" type="text/css" href="{%static 'classd/prgwin.css'%}">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  <div class="container">
+    <div class="align">
+  <div class="button_cont0" align="center"><a class="buttonback" href="../"><i class="fas fa-arrow-left" style="white" ></i>뒤로가기</a>
+    <a class="button1" href="update/" onclick="window.open('update/', '정보수정', 'width=700 height=700'); return false">정보수정</a>
+    <a class="buttondelete" href="delete/" target="popup" onclick="window.open('delete/', '삭제', 'width=400 height=200'); return false;">삭제</a></div>
+  </div>
+    <div class="rowdata">  
+        <table class="table1">
+        <colgroup>
+         <col span="1" style="width: 15%;">
+         <col span="1" style="width: 13%;">
+         <col span="1" style="width: 25%;">
+         <col span="1" style="width: 15%;">
+         <col span="1" style="width: 20%;">
+         <col span="1" style="width: 40%;">
+         <col span="1" style="width: 15%;">
+         <col span="1" style="width: 15%;">
+         <col span="1" style="width: 15%;">
+        </colgroup>
+        <tbody>
+          <tr>
+            <th>코드</th>
+            <th>날짜</th>
+            <th>학교</th>
+            <th>구분</th>
+            <th>반</th>
+            <th>수업</th>
+            <th>강사</th>
+            <th>인원 & 장소</th>
+            <th>시간</th>
+          </tr>
+        <tr>
+          <td>{{class_obj.class_id|default_if_none:""}}</td>
+          <td>{{class_obj.class_date|date:"Y-m-d"}}</td>
+          <td>{{class_obj.class_sch|default_if_none:""}}</td>
+          <td>{{class_obj.class_cate|default_if_none:""}}</td>
+          <td>{{classstat_obj.class_minicate|default_if_none:""}}</td>
+          <td>{{class_obj.class_stat|default_if_none:""}}</td>
+          <td>{{class_obj.class_tea|default_if_none:""}}</td>
+          <td>{{class_obj.class_stunum|default_if_none:""}}</td>
+          <td>{{class_obj.class_time|default_if_none:""}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+<form method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
+    <div class="progresstable">
+    <h3>진행상황</h3>
+        
+    <div class="button_conttime" align="center" >마지막 수정. {{class_obj.timestamp_progress|date:"Y-m-d P"}} {{class_obj.user_progress|default_if_none:""}}<button type="submit" name="save_progress" value="progress" class="button2">저장</button>{{form_class.errors}}</div>
+    <table class="table2">
+      <tbody>
+        <tr>
+          <th>진행</th>
+          <th>내용</th>
+          <th>완료</th>
+        </tr>
+        <tr>
+          <td>
+            
+          </td>
+          <td>
+            <input id="16" name="class_confirm" type="radio" {%if class_obj.class_confirm == "확정" %} checked="checked" {%endif%} class="new-control-input" value="확정">확정 
+            <input id="16" name="class_confirm" type="radio" {%if class_obj.class_confirm == "미확정" %} checked="checked" {%endif%} class="new-control-input" value="미확정">미확정
+            <br>
+            <input id="16" name="class_3" type="radio" {%if class_obj.class_3 == "온드림에듀" %} checked="checked" {%endif%} class="new-control-input" value="온드림에듀">온드림에듀 
+            <input id="16" name="class_3" type="radio" {%if class_obj.class_3 == "미래아카데미" %} checked="checked" {%endif%} class="new-control-input" value="미래아카데미">미래아카데미
+            <input id="16" name="class_3" type="radio" {%if class_obj.class_3 == "드림아트" %} checked="checked" {%endif%} class="new-control-input" value="드림아트">드림아트
+          </td>
+          
+        
+        </tr>
+        <tr>
+          <td>수업문의</td>
+            <td>
+              <input id="4" name="class_cont_call" type="checkbox" class="new-control-input" {%if class_obj.class_cont_call %} checked="checked" {%endif%} value="1">전화
+              <input id="4" name="class_cont_message" type="checkbox" class="new-control-input" {%if class_obj.class_cont_message %} checked="checked" {%endif%} value="1">문자 
+              <input id="4" name="class_cont_email" type="checkbox" class="new-control-input" {%if class_obj.class_cont_email %} checked="checked" {%endif%} value="1">메일
+            </td>
+            <td>
+              <label id="dt1">{%if class_obj.class_cont_call or class_obj.class_cont_message or class_obj.class_cont_email%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}</label>
+            </td>
+
+        </tr>
+        <tr>
+          <td>서류제출</td> 
+          <td>
+            <input id="4" name="class_doc_plan" type="checkbox" class="new-control-input" {%if class_obj.class_doc_plan %} checked="checked" {%endif%} value="7.142857142857143">수업계획서
+            <br>
+            <input id="5" name="class_doc_preestim" type="checkbox" class="new-control-input" {%if class_obj.class_doc_preestim %}checked="checked" {%endif%} value="7.142857142857143">견적서
+            <input id="16" name="class_doc_preestim_meth" type="radio" {%if class_obj.class_doc_preestim_meth == "강사료포함" %} checked="checked" {%endif%} class="new-control-input" value="강사료포함">강사료포함 
+            <input id="17" name="class_doc_preestim_meth" type="radio" {%if class_obj.class_doc_preestim_meth == "강사료 직접입금" %} checked="checked" {%endif%} class="new-control-input" value="강사료 직접입금">강사료미포함
+            <br>
+            <input id="6" name="class_doc_tea" type="checkbox" class="new-control-input" {%if class_obj.class_doc_tea %} checked="checked" {%endif%} value="7.142857142857143">강사서류
+              
+            <br>
+<div class="fileupload">
+              <label><a {%if class_obj.class_file_preestim%}   href="{{class_obj.class_file_preestim.url}}" download {%endif%}>견적서</a></label>
+              <input type="file" name="class_file_preestim" >
+            <button class="button" name="class_file_preestim_input" type="submit">업로드</button>
+              <br>
+              <label><a {%if class_obj.class_file_plan%}   href="{{class_obj.class_file_plan.url}}" download {%endif%}>계획서</a></label>
+              <input type="file" name="class_file_plan" >
+            <button class="button" name="class_file_plan_input" type="submit">업로드</button>
+              <br>
+              <label><a {%if class_obj.class_file_tea%}   href="{{class_obj.class_file_tea.url}}" download {%endif%}>강사서류</a></label>
+              <input type="file" name="class_file_tea" >
+            <button class="button" name="class_file_tea_input" type="submit">업로드</button>
+</div>
+            </td>
+
+            <td>{%if class_obj.class_doc_plan and class_obj.class_doc_preestim and class_obj.class_doc_tea%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}
+            </td>
+        </tr>  
+        <tr>
+          <td>재료주문</td>
+            <td class="list">
+              {%for i in mat_obj%}
+              <input id="10" value="7.142857142857143" disabled="disabled" type="checkbox" class="new-control-input" {%if i.status == '주문완료'%} checked="checked" {%elif i.status == '배송완료'%}checked="checked"{%endif%}>{{i.mat_dyna}}
+              {%endfor%}
+            </td>
+            <td>
+              {%if order_check%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}
+              </td>
+        </tr> 
+        <tr>
+          <td>도착확인</td>
+          <td class="list">
+            {%for i in mat_obj%}
+            <input id="10" value="7.142857142857143" disabled="disabled" type="checkbox" class="new-control-input" {%if i.status == '배송완료' %} checked="checked" {%endif%}><label for="id_mat_deliver_done{{forloop.counter}}">{{i.mat_dyna}}</label>
+            {%endfor%}
+          </td>
+          <td>
+            {%if deli_check%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}
+          </td>
+        </tr> 
+        <tr>
+          <td>수업준비</td>
+          <td>
+            <input name="class_mani" id="12" type="checkbox" class="new-control-input" {%if class_obj.class_mani %} checked="checked" {%endif%} value="7.142857142857143">작업
+            <br>
+            <input name="class_div" id="12" type="checkbox" class="new-control-input" {%if class_obj.class_div %} checked="checked" {%endif%} value="7.142857142857143">소분</td>
+            <td>
+            {%if class_obj.class_mani and class_obj.class_div%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}
+            </td>
+        </tr> 
+        <tr>
+          <td><label for="id_class_taken"> 강사반출</label></td>
+          <td><input id="id_class_taken" name="class_taken" type="checkbox" disabled="disabled" class="new-control-input" {%if class_obj.class_taken %} checked="checked" {%endif%} value="5">완료</td>
+          <td>{%if class_obj.class_taken%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}</td>
+        </tr> 
+        <tr>
+          <td><label for="id_class_taken"> 수업진행</label></td>
+          <td>
+            <input id="id_class_taken" name="class_done" type="checkbox" class="new-control-input" {%if class_obj.class_done %} checked="checked" {%endif%} value="5">완료 
+            <div class="slidecontainer"><p>만족도: <span id="slide"></span></p>
+            <input type="range" min="0" max="100" value="{{class_obj.class_satisfaction}}" name="class_satisfaction" class="slider" id="myRange">
+            </div>
+          </td>
+                
+          <td>{%if class_obj.class_done%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}</td>
+        </tr> 
+        <tr>
+          <td>강사반입</td>
+          <td><input id="14" name="class_re_done" type="checkbox" disabled="disabled" class="new-control-input" {%if class_obj.class_re_done %} checked="checked" {%endif%} value="7.142857142857143">완료</td>
+          <td>{%if class_obj.class_re_done%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}</td>
+        </tr> 
+        <tr>
+          <td>정산</td>
+          <td><input id="15" name="class_doc_finestim" type="checkbox" class="new-control-input" {%if class_obj.class_doc_finestim %} checked="checked" {%endif%} value="7.142857142857143">견적서
+          <br>
+                    <input id="16" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "계산서" %} checked="checked" {%endif%} class="new-control-input" value="계산서">계산서 
+                    <input id="17" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "현금영수증" %} checked="checked" {%endif%} class="new-control-input" value="현금영수증">현금영수증
+                    <input id="18" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "카드결제" %} checked="checked" {%endif%} class="new-control-input" value="카드결제">카드결제 
+                    <input id="19" name="class_cal_meth" type="radio" {%if class_obj.class_cal_meth == "현금" %} checked="checked" {%endif%} class="new-control-input" value="현금">현금
+                    <br><input id="20" name="class_deposit_check" type="checkbox" class="new-control-input" {%if class_obj.class_deposit_check %} checked="checked" {%endif%} value="7.142857142857143">입금확인
+              <br>
+
+              <label><a {%if class_obj.class_file_finestim%}   href="{{class_obj.class_file_finestim.url}}" download {%endif%}>견적서</a></label>
+              <input type="file" name="class_file_finestim" >
+            <button class="button" name="class_file_finestim_input" type="submit">업로드</button>
+              <br>
+              <label><a {%if class_obj.class_file_cal%}   href="{{class_obj.class_file_cal.url}}" download {%endif%}>영수증</a></label>
+              <input type="file" name="class_file_cal" >
+            <button class="button" name="class_file_cal_input" type="submit">업로드</button>
+
+                    </td>
+                    <td>{%if class_obj.class_doc_finestim and class_obj.class_deposit_check%}<img src="{%static 'classd/complete.png'%}" width="35" height="26.9">{%endif%}
+                    </td>
+        </tr> 
+            </tbody></table> </div>
+
+
+    
+<div class="schinfo">
+        <div class="button_cont2" align="center"><a class="buttonmoney">단가정보</a></div>
+              <table class="tablen">
+            <tbody><tr>
+          <th>단가</th>
+                    <td><input name="class_price" value="{{class_obj.class_price}}" type="number">원</td>
+                </tr>
+                  </tbody>
+            </table>
+    </div>
+  <div class="schinfo2">
+        <div class="button_cont2" align="center"><a class="buttonrecipe">레시피정보</a></div>
+              <table class="table3">
+                  <colgroup>
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 35%;">
+       <col span="1" style="width: 30%;">
+        <col span="1" style="width: 30%;">
+
+            </colgroup>
+                  <thead><tr>
+                      <th>구분</th>
+                      <th>품목</th>
+                      <th>레시피함량</th>
+                      <th>필요수량</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+
+                    {%for i in mat_obj%}
+                    <tr>
+                    <td>{{i.mat_dyna.category|default_if_none:""}}</td>
+                    <td>{{i.mat_dyna|default_if_none:""}}</td>
+                    <td>{% for j in recipe_obj %}{%if j.mat_statkey == i.mat_dyna%}{{j.stat_mat_amount|default_if_none:""}}{{i.mat_dyna.mat_unit|default_if_none:""}}/{{j.stat_mat_unit|default_if_none:""}}{%endif%}{%endfor%}</td>
+                    <td><input name="dyna_mat_num{{forloop.counter}}" value="{{i.dyna_mat_num|default_if_none:""}}" type="text">{{i.mat_dyna.mat_unit|default_if_none:""}}</td>
+
+
+                    </tr>
+
+                    {%endfor%}
+
+
+
+          </tbody>
+                    
+            </table>
+      <div class="button_cont_1" align="center"><button type="submit" name="stat_reset" class="buttonrefresh">레시피초기화</button>
+          <a class="button0" href="../../class_data/{{class_obj.class_statkey.class_code}}/">레시피 바로가기<i class="fas fa-arrow-right" style="white" ></i></a></div>
+    </div>
+
+
+
+      
+
+    <div class="bottom">
+        <div class="schinfo3">
+        <div class="button_cont2" align="center"><a class="buttonschinfo">학교정보</a></div>
+              <table class="table4">
+            <tbody><tr>
+          <th>담당자</th>
+                    <td><select class="selectschtea" name="schtea">
+                      <option value="{{class_obj.schteakey.schtea_name}}">{{class_obj.schteakey.schtea_name}}</option>
+                      {%for i in sch_tea%}
+            <option value="{{i.schtea_name}}">{{i.schtea_name}}</option>
+            {%endfor%}
+                        </select>
+                        </td>
+               </tr>
+                <tr>
+          <th>전화번호</th>
+                    <td>{{class_obj.schteakey.schtea_tel1|default_if_none:''}}</td>
+               </tr>
+               <tr>
+          <th>이메일</th>
+                    <td>{{class_obj.schteakey.schtea_email|default_if_none:''}}</td>
+               </tr>
+                <tr>
+          <th>학교코드</th>
+                    <td>{{sch_obj.sch_code|default_if_none:''}}</td>
+               </tr>
+               <tr>
+          <th>학교전화번호</th>
+                    <td>{{sch_obj.sch_tel|default_if_none:''}}</td>
+               </tr>
+               <tr>
+          <th>학교이메일</th>
+          <td>{{sch_obj.sch_email|default_if_none:''}}</td>
+               </tr>
+
+          </tbody>
+            </table>
+    </div>
+        <div class="memo">
+    <div class="button_cont2" align="center"><a class="buttonmemo">메모</a></div>
+    <div class="text-area">
+        <textarea id="id_memo" name="memo" class="noresize" rows="14" cols="62">{{class_obj.memo|default_if_none:""}}</textarea>
+        
+        <div class="button_cont3" align="center" >마지막 수정. {{class_obj.timestamp_memo|date:"Y-m-d P"}} {{class_obj.user_memo|default_if_none:""}}<button type="submit" name="save_progress" class="button5" value="memo" href="#">저장</button></div>
+    </div>
+        </div>
+
+    </div>
+
+</form>
+</div>
+
+  </body>
+    <script>
+        
+var slider = document.getElementById("myRange");
+var output = document.getElementById("slide");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+};
+
+    </script>
+<!--
+<script>
+    
+   var dt1 = new Date({{class_obj.class_date|date:"m-d"}});
+   dt1.setDate( dt1.getDate() - 10 );
+   document.write( dt1.toDateString() );
+
+
+</script> -->
+
+
+
+</html>
+{%endblock%}

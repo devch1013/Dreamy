@@ -1,0 +1,31 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>삭제</title>
+    <link rel='stylesheet' type="text/css" href="{%static 'classd/classddelete.css'%}">
+
+
+</head>
+
+<body>
+
+    <div class="main">
+    <h2>삭제하시겠습니까?</h2>
+        <p>삭제되는 수업 재료: {{obj.mat_dyna.mat_name|default_if_none:""}}</p>
+<div class="btnparty">
+<form method="POST">{%csrf_token%}
+          <button type="submit" class="buttondelete">삭제</button>
+        <button class="button3" onclick="window.close();">취소</button>
+    </form>
+    </div>
+    </div>
+<script>
+window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+    </script>
+
+</body>
+</html>

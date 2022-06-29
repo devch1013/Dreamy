@@ -1,0 +1,52 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>ONDREAM EDUCATION</title>
+        <link href="{%static 'css/all.css'%}" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{%static 'css/base.css'%}" />
+		<script src="{%static 'js/modernizr.custom.js'%}"></script>
+	</head>
+	<body>
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+                                <li><a href="/teacher/"><i class="fas fa-user"></i>강사관리</a></li>
+                                <li><a href="/school/"><i class="fas fa-school"></i>학교관리</a></li>
+                                <li><a href="/order/"><i class="fas fa-shopping-cart"></i>주문</a></li>
+								<li><a href="/delivery/"><i class="fas fa-truck"></i>배송</a></li>
+                                <li><a href="/inventory/"><i class="fas fa-boxes"></i>재료 & 도구</a></li>
+                                <li><a href="/teacherinout/"><i class="fas fa-pen"></i>반출 & 반입</a></li>
+                                <li><a href="/teacher/"><i class="fas fa-coins"></i>재무관리</a></li>		</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a class="home" href="/home/">홈</a></li>
+				<li><a href="/class/"><span>수업현황</span></a></li>
+                
+                <li><a href="/email/"><span>이메일센터</span></a></li>
+                <li><a href=""><span>서류센터</span></a></li>
+                <li><p class="menuwords"><strong>{{user.user_name}}</strong> {{user.user_position}}님</p></li>
+				
+			</ul>
+		</div><!-- /container -->
+        <div class="main">
+        	{%block content%}
+        	{%endblock%}
+            
+        </div>
+		<script src="{%static 'js/classie.js'%}"></script>
+		<script src="{%static 'js/gnmenu.js'%}"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+	</body>
+</html>

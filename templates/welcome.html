@@ -1,0 +1,44 @@
+
+{%load static%}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 
+     <!-- Site Metas -->
+    <title>ONDREAM EDUCTATION</title>  
+
+
+    <link rel="stylesheet" href="{%static 'base/welcome.css'%}">
+
+
+
+
+</head>
+<body>
+
+
+<div class="ondreamedu">
+    ONDREAM EDUCATION
+
+    <div class="loginbtn">
+        {%if user.is_authenticated %}
+        {%if user.user_position == '선생'%}
+        <a href="teacherout/"><div class="loginbtndesign">반출입</div></a>
+        {%else%}
+        <a href="home/"><div class="loginbtndesign">HOME</div></a>
+        {%endif%}
+        {%else%}
+    <a href="login/"><div class="loginbtndesign">LOGIN</div></a>
+    {%endif%}
+    </div>
+
+</div>
+
+</body>
+</html>

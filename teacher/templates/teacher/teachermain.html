@@ -1,0 +1,136 @@
+{%extends 'base/sidebar_1.html'%}
+{%block content %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{%static 'teacher/teachermain.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="toptop">
+    <div class="detail1">
+    개인별
+    </div>
+    <div class="detail2" onclick="location.href='pay/' ">
+    강사료
+    </div>
+        </div>
+    <h2>강사</h2>
+    <div class="smallcont">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="강사를 검색하세요..." title="Type in a name">
+    
+    <div class="button_cont" align="center"><button class="button" id="myBtn">강사추가</button></div>
+    
+    </div>
+    <ul id="myUL" class="cont1">
+      {% for i in tea_obj %}
+      <li><a href="{{i.tea_id}}">{{i.tea_name}}</a></li>
+      {%endfor%}
+      
+    </ul>
+        </div>
+     <div id="myModal" class="modal">
+  <!-- Modal content -->
+ <div class="modal-content">
+    <span class="close">&times;</span>
+   <div class="testbox">
+      <form action="/">
+        <div class="banner">
+          <h1>강사 추가</h1>
+        </div>
+<div class="center">
+        <div class="item">
+        이름:
+          <input type="text" name="name"/ placeholder="ex)권서현">
+        </div>
+              <br>
+          <div class="item">
+        담당분야: 
+           <input type="text" name="name"/ placeholder="ex)요리">
+        </div>
+              <br>
+              <div class="item">
+        이메일: 
+           <input type="text" name="name"/ placeholder="ex)seohyun@naver.com">
+        </div>
+    <br>
+          <div class="item">
+         주소: 
+          <input type="text" name="name"/ placeholder="ex)인천 부평 서현로">
+    </div>
+              <div class="item">
+        은행: 
+          <input type="text" name="name"/ placeholder="ex)농협">
+        </div>
+    <div class="item">
+        계좌번호: 
+          <input type="text" name="name"/ placeholder="ex)351-***-******">
+        </div>
+    </div>
+<div class="submit2">
+          <button type="submit" id="Btn" href="/">추가</button>
+    </div>
+      </form>
+    </div>
+  </div>
+</div>
+    
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var btnn = document.getElementById("Btn");
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+btnn.onclick = function() {
+  modal.style.display = "none";
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+ 
+
+
+</script>
+
+</body>
+</html>
+{%endblock%}

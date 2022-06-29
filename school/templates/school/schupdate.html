@@ -1,0 +1,59 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>수정</title>
+    <link rel=stylesheet type="text/css" href="{%static 'school/schupdate.css'%}">
+
+</head>
+
+<body>
+
+    <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+    <h2>학교수정</h2>
+	<form class="addclass"  method="POST">{%csrf_token%}
+	  	<br>
+            <div class="schname">
+            <label>이름</label>
+		  	<input type="text" name="sch_name" value="{{obj.sch_name}}" class="schnameadd" placeholder="ex)장수초등학교">
+            </div>
+  	   <br>
+        <div class="schname">
+            <label>고유번호</label>
+		  	<input type="text" name="sch_code" value="{{obj.sch_code}}" class="schnameadd" placeholder="ex)138-12-88595">
+            </div>
+  		<br>
+         <div class="schname">
+            <label>이메일</label>
+		  	<input type="text"name="sch_email" value="{{obj.sch_email}}" class="schnameadd" placeholder="ex)jses@korea.kr">
+            </div>
+        <br>
+           <div class="schname">
+            <label>주소</label>
+		  	<input type="text" name="sch_address" value="{{obj.sch_address}}" class="schnameadd" placeholder="ex)부천 장수동">
+            </div>
+        <br>
+  		    <div class="schname">
+            <label>전화번호</label>
+		  	<input type="text" name="sch_tel" value="{{obj.sch_tel}}" class="schnameadd" placeholder="ex)032-7872-3333">
+            </div>
+
+
+          <button type="submit" class="button3">수정</button>
+
+         </form>
+    </div>
+    
+
+
+        
+</body>
+<script>
+ window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+</script>
+</html>

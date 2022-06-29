@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{%if user.is_authenticated %}
+이미 로그인 하였습니다!!
+<a href="/home">
+	<button>Home</button>
+</a>
+{%else%}
+{% load static %}
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>로그인 페이지</title>
+		<link rel="stylesheet" href="{% static 'login.css' %}">
+	</head>
+
+	<body>
+
+	<form class="box" method="post">{% csrf_token %}
+		<h1>Login</h1>
+		<input type="text" name="username" required id='id_username' placeholder="Username">
+		<input type="password" name="password" required id='id_password'placeholder="Password">
+		<input type="submit" name="" value="Login">
+
+	</form>
+
+	</body>
+</html>
+{%endif%}

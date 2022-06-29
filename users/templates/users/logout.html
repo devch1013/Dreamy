@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 
+     <!-- Site Metas -->
+    <title>LOGIN</title>  
+
+
+    <link rel="stylesheet" href="{%static 'base/logout.css'%}">
+
+</head>
+<body>
+<div class="loginrectangle">
+
+<div class="ondreamedu">
+    <h1>성공적으로 로그아웃 하셨습니다.</h1>
+    <h2>다시 <a href="{% url 'login'%}">로그인</a> 하시겠습니까?</h2>
+
+    <div class="loginbtn">
+    <a href="/" class="loginbtndesign">홈으로</a>
+    </div>
+
+    </div>
+    </div>
+</body>
+</html>

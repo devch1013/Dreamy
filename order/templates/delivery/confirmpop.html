@@ -1,0 +1,56 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>수정</title>
+    <link rel=stylesheet type="text/css" href="{%static 'delivery/confirmpop.css'%}">
+
+
+</head>
+{% if obj.deli_state == '주문완료'%}
+<body>
+
+    <div class="main">
+        
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+        <form method="POST">{%csrf_token%}
+    <h2>배송확인</h2>
+        <ul class="ret">
+            <li>{%now 'Y-m-d'%}</li>
+            <li>{{obj.mat_info.mat_name}}</li>
+            <li>{{obj.order_amount}}{{obj.mat_info.get_mat_unit_display}}</li>
+            <li>{{obj.mat_info.mat_shop}}</li>
+        </ul>
+        <div class="tyo">
+        <label>최종상태</label>
+	          <select name="deli_state" class="chosen-select" tabindex="2">
+	            
+	            <option value="배송완료">배송완료</option>
+	            <option value="반품완료">반품완료</option>
+                <option value="환불완료">환불완료</option>
+	          </select>
+        <br>
+        <label>재고추가</label>
+	          <input type="text" name="deli_amount" value="{{obj.order_amount}}"><label>{{obj.mat_info.get_mat_unit_display}}</label>
+        </div>
+
+          <button type="submit" class="button3">확인</button>
+
+</form>
+    </div>
+    
+
+        
+</body>
+{%else%}
+처리된 주문입니다
+{%endif%}
+<script>
+ window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+</script>
+
+</html>

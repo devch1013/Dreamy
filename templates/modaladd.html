@@ -1,0 +1,122 @@
+<!--{%extends "class/classtable.html"%}-->
+{%block addbutton%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Modal Add</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+
+.modal-content {
+  text-align: left;
+}
+
+  #myInput {
+    padding: 20px;
+    margin-top: -6px;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+  }
+
+  </style>
+
+</head>
+<body>
+<h2> 추가 </h2>
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">추가</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">수업추가</h4>
+        </div>
+        <div class="modal-body">
+          <form action="process.php" method="POST">
+      <div>
+        <label>날짜</label>
+        <input type="date" name="classdate">
+      </div>
+      <br>
+      <div class="dropdown">학교
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">검색
+    <span class="caret"></span></button>
+	    <ul class="dropdown-menu">
+	      <input class="form-control" id="myInput" type="text" placeholder="Search..">
+	      <li><a href="#">학교</a></li>
+	      <li><a href="#">또학교</a></li>
+	      <li><a href="#">안녕학교</a></li>
+	      <li><a href="#">굿학교</a></li>
+	      <li><a href="#">뀨학교</a></li>
+	      <li><a href="#">쮸학교</a></li>
+	    </ul>
+  		</div>
+  	  <br>
+      <div>
+        <label>미니구분</label>
+        <select name="minicate">
+        <option value="3D크리에이터">3D크리에이터</option>
+        <option value="플로리스트">플로리스트</option>
+        <option value="파티쉐">파티쉐</option>
+        </select>
+      </div>
+      <br>
+      <div>
+        <label>구분</label>
+        <select name="cate">
+        <option value="자유학기">자유학기</option>
+        <option value="동아리">동아리</option>
+        <option value="돌봄교실">돌봄교실</option>
+        </select>
+      </div>
+      <br>
+      <div>
+        <label>인원</label>
+        <input type="text" name="number">
+      </div>
+      <br>
+      <div>
+        <label>장소</label>
+        <input type="text" name="place">
+      </div>
+      <br>
+        <input type="submit" name="add"
+        value="추가"       >
+    </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".dropdown-menu li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+
+</body>
+</html>
+{%endblock%}

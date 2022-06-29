@@ -1,0 +1,219 @@
+
+{%extends 'base/sidebar_1.html'%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
+	<title>수업</title>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="stylesheet" href="{%static 'order/order.css'%}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css"/>
+    
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/keytable/2.5.1/css/keyTable.dataTables.min.css"/>
+
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+
+</head>
+<body>
+<div class="top">    
+    <div class="header"><a href="#"><i class="fas fa-shopping-cart"></i><span class="new"> 장바구니+</span></a> <button type="button" class="clicked" onclick="location.href='#order.html' ">주문 내역</button> </div>
+    </div>
+    <table id="example" class="display" cellspacing="0" width="100%">
+    <colgroup>
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 30%;">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>장바구니코드</th>
+            <th>주문날짜</th>
+            <th>주문시간</th>
+            <th>주문자</th>
+            <th>주문처</th>
+            <th>주문내역</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>장바구니코드</th>
+            <th>주문날짜</th>
+            <th>주문시간</th>
+            <th>주문자</th>
+            <th>주문처</th>
+            <th>주문내역</th>
+        </tr>
+    </tfoot>
+    <tbody>
+       <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        <tr>
+           <td>O765468</td>
+           <td>2020-03-06</td>
+           <td>PM 02:07</td>
+           <td>권서현</td>
+           <td>파스텔크래스프</td>
+           <td>천연비누, 등등등등등등</td>
+
+        </tr>
+        
+    </tbody>
+</table>
+
+
+
+<script type="text/javascript" src= "https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src= "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    
+    
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+    <script src="https://cdn.datatables.net/keytable/2.5.1/js/dataTables.keyTable.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="datatables.min.js"></script>
+<script>
+
+$(document).ready(function (){
+    var table = $('#example').DataTable({
+        'responsive': true,
+         "scrollY":   "700px",
+        "scrollCollapse": true,
+        "paging":         false,
+
+
+    });
+});
+    
+    </script>
+</body>
+</html>
+{%endblock%}

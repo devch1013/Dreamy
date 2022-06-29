@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+body {
+    width: 700px;
+    height: 700px;
+}
+.main{
+    width: 500px;
+    height: 400px;
+    background-color: #273449;
+    background-size: 500px 500px;
+    background-repeat: no-repeat;
+
+  }
+
+.main h2 {
+    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-left: 180px;
+    font-size: 35px;
+    position: absolute;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    color: rgba(20,195,154,1);
+}
+
+a {
+    color: white;
+}
+
+
+.button2 {
+  border: none;
+  padding: 3px 7px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px 30px;
+  cursor: pointer;
+  float: right;
+border-radius: 10px;
+  color: #273449;
+    background-color: rgba(20,195,154,1);
+;
+}
+
+.button2:hover {
+    box-shadow: 3px 3px 3px rgba(101, 101, 101, 0.43);
+}
+
+.addclass{
+    margin-right:230px;
+    margin-left:170px;
+    padding-bottom: 100px;
+    
+}
+
+.show {display: block;}
+
+
+.main .button3{
+  background-color: rgba(20,195,154,1);
+  border: none;
+  padding: 10px 25px;
+    margin-right: 30px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+    margin-left: 205px;
+  cursor: pointer;
+  float: center;
+  color: #273449;
+ border-radius: 10px;
+    
+}
+
+.button3:hover {
+    box-shadow: 3px 3px 3px rgba(101, 101, 101, 0.43);
+}
+
+
+
+label {
+    padding-right: 10px;
+    display: inline-block;
+    color: white;
+}
+
+input {
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+select {
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 215px;
+}
+
+.submit {
+    position: absolute;
+}
+
+.main ul li{
+    display: inline-block;
+    padding: 0px 10px 0px 0px;
+}
+
+.ret {
+    padding-top: 130px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.ret {
+    padding-top: 130px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+
+.tyo {
+    width: 300px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.chosen-select {
+    margin-bottom: 20px;
+}

@@ -1,0 +1,119 @@
+{%extends 'base/sidebar_1.html'%}
+{%load static%}
+{%block content%}
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
+   <title>HOME</title>
+
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+
+    <link rel="stylesheet" href="{%static 'home.css'%}">
+</head>
+<body onload="startTime()">
+    <div class="background">
+    <div class="top">
+   <div class="datetime">
+<div id="txt" class="time">1</div>
+     <div id="today" class="time2"><strong></strong>
+</div></div>
+    </div>
+    <div class="lefthome">
+     <label id="todaysclasslab">오늘의 수업</label>    
+    <div class="tablesinhome">
+    <table class="todaysclass">
+    <thead>
+        <tr>
+        <th>학교</th>
+        <th>반</th>
+        <th>회차</th>
+        <th>수업</th>
+        <th>강사</th>
+        <th>시간</th>
+        </tr>
+    </thead> 
+    {% for i in class_obj%}
+    <tr>
+        <td>{{i.class_sch|default_if_none:""}}</td>
+        <td>{{i.class_minicate|default_if_none:""}}</td>
+        <td>{{i.class_count|default_if_none:""}}</td>
+        <td>{{i.class_stat|default_if_none:""}}</td>
+        <td>{{i.class_tea|default_if_none:""}}</td>
+        <td>{{i.class_time|default_if_none:""}}</td>
+        </tr>
+    {%endfor%}
+        
+         
+
+    </table>    
+    </div>
+        </div>
+
+    <div class="righthome">
+     <label id="todaysteacher">오늘 방문하는 강사</label>
+    <div class="rectangle">
+    <ul class="homelistteacher">
+        {% for i in tea_obj%}
+        <li id="lists">{{i.tea_name}}</li>
+    {%endfor%}
+
+    </ul>
+    </div>
+        </div>
+            </div>
+
+
+<script>
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = today.getMonth()+1; //January is 0!
+    var dd = today.getDate();
+    var weekday = new Array();
+weekday[0]="일요일";
+weekday[1]="월요일";
+weekday[2]="화요일";
+weekday[3]="수요일";
+weekday[4]="목요일";
+weekday[5]="금요일";
+weekday[6]="토요일";
+
+
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    document.getElementById('today').innerHTML = yyyy+'/'+mm+'/'+dd + ' ' + weekday[today.getDay()];   
+
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
+    <script src="./jquery-3.0.0.min.js"></script>
+
+</body>
+</html>
+{%endblock%}

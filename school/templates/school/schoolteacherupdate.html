@@ -1,0 +1,58 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>수정</title>
+    <link rel=stylesheet type="text/css" href="{%static 'school/schoolteacheradd.css'%}">
+
+
+</head>
+
+<body>
+
+    <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+    <h2>학교선생 수정</h2>
+  <form class="addclass"  method="POST">{%csrf_token%}
+      
+        <br>
+            <div class="schname">
+            <label>이름</label>
+        <input type="text" name="schtea_name" class="schnameadd" value="{{schtea_obj.schtea_name|default_if_none:""}}" placeholder="ex)권서현">
+            </div>
+       <br>
+        <div class="schname">
+            <label>직급</label>
+        <input type="text" name="schtea_pos" class="schnameadd" value="{{schtea_obj.schtea_pos|default_if_none:""}}" placeholder="ex)2학년 부장">
+            </div>
+      <br>
+         <div class="schname">
+            <label>이메일</label>
+        <input type="text" name="schtea_email" class="schnameadd" value="{{schtea_obj.schtea_email|default_if_none:""}}" placeholder="ex)jses@korea.kr">
+            </div>
+        <br>
+           <div class="schname">
+            <label>전화번호</label>
+        <input type="text" name="schtea_tel1" class="schnameadd" value="{{schtea_obj.schtea_tel1|default_if_none:""}}" placeholder="ex)010-8132-7954">
+            </div>
+        <br>
+          <div class="schname">
+            <label>전화번호2</label>
+        <input type="text" name="schtea_tel2" class="schnameadd" value="{{schtea_obj.schtea_tel2|default_if_none:""}}" placeholder="ex)032-7872-3333">
+            </div>
+
+
+          <button type="submit" class="button3">수정</button>
+
+         </form>
+    </div>
+
+</body>
+<script>
+ window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+</script>
+</html>

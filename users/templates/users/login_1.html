@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{%if user.is_authenticated %}
+이미 로그인 하였습니다!!
+<a href="/home">
+    <button>Home</button>
+</a>
+{%else%}
+{% load static %}
+<html lang="ko">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 
+     <!-- Site Metas -->
+    <title></title>  
+
+
+    <link rel="stylesheet" href="{%static 'base/login.css'%}">
+
+
+
+
+</head>
+<body>
+<div class="loginrectangle">
+
+<div class="ondreamedu">
+    LOGIN
+    
+    <form class="login-form" method="POST">{% csrf_token %}
+      <input class="username" name="username" type="text" required id='id_username' placeholder="아이디"/>
+      <input class="password" name="password" type="password" required id='id_password' placeholder="비밀번호"/>
+    
+
+    <div class="loginbtn">
+    <input type="submit" value="LOGIN" class="loginbtndesign"></div>
+</form>
+    </div>
+
+    </div>
+
+</body>
+</html>
+{%endif%}

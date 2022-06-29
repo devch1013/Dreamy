@@ -1,0 +1,71 @@
+{%extends 'base/sidebar_1.html'%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
+   <title>배송</title>
+<link rel="stylesheet" href="{%static 'order/datatable.css'%}">
+    <link rel="stylesheet" href="{%static 'delivery/delivery.css'%}">
+</head>
+<body>
+    <div class="all">
+<div class="chabtn">
+    <button type="button" class="clicked" >배송 대기중</button>
+    <button type="button" class="unclicked" onclick="location.href='../delivery2' ">배송 완료</button>
+    </div>
+    <div class="classtable">
+        <form id="frmCareer" method="get" action="prjFormEvent.js">
+      <table id="tblCareer" class="table table-striped table-bordered mydatatable" style="width:100%">
+        <colgroup>
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 25%;">
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 20%;">
+       <col span="1" style="width: 20%;">
+        </colgroup>
+        <thead>
+            <tr role="row"><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="구분: activate to sort column ascending" style="width: 37px;">주문일자</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 37px;">재료이름</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="공급업체: activate to sort column ascending" style="width: 16px;">총 구매량</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="공급가: activate to sort column ascending" style="width: 16px;">공급업체</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="위치: activate to sort column ascending" style="width: 20px;">배송상태</th></tr>
+         </thead>
+    
+        <tbody>
+      
+      
+            {% for i in cart %}
+
+            <tr role="row" {%if forloop.counter|divisibleby:"2" %}class="odd" {%else%} class="even" {%endif%}>
+        
+              
+              <td>{{i.order_date|date:"Y-m-d f A"}}</td>
+              <td>{{i.mat_info.mat_name}}</td>
+              <td>{{i.order_amount}}{{i.mat_info.mat_unit|default_if_none:""}}</td>
+                <td>{{i.shop}}</td>
+              <td>배송중<a class="button2" href="{{i.order_info.order_id}}/{{i.mat_info.mat_id}}/" target="popup" onclick="window.open('{{i.order_info.order_id}}/{{i.mat_info.mat_id}}/','배송확인', 'width=500px height=400px'); return false;">배송확인</a></td>
+             
+            </tr>
+             
+            {%endfor%}
+               
+            
+            </tbody>
+            
+         <tfoot>
+            <tr><th rowspan="1" colspan="1">주문일자</th><th rowspan="1" colspan="1">품목이름</th><th rowspan="1" colspan="1">총 구매량</th><th rowspan="1" colspan="1">공급업체</th><th rowspan="1" colspan="1">배송상태</th></tr>
+         </tfoot>
+      </table>
+        </form>
+    </div>
+</div>
+   <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+     <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+     <script src="http://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+     <script>
+        $('.mydatatable').DataTable();
+        </script>
+</body>
+</html>
+{%endblock%}

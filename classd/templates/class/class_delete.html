@@ -1,0 +1,14 @@
+<h1>Are you sure you want to delete : </h1>
+    <p>{{ object.class_id }} {{object.class_sch}} {{object.class_stat}}</p>
+
+    <form method="POST">{% csrf_token %}
+
+<button type="submit" class="btn btn-danger" >Yes, delete</button>
+
+    </form>
+<script>
+ window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+</script>

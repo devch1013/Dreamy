@@ -1,0 +1,92 @@
+{%load static%}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>수정</title>
+    <link rel=stylesheet type="text/css" href="{%static 'order/need_inven.css'%}">
+
+
+</head>
+
+<body>
+
+    {%if mat_obj.mat_dyna.mat_inven == None%}
+    
+   <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+    <h2>재고 미입력</h2>
+            <p><br>
+            신규 물품의 재고가 미입력 상태입니다. <br>
+    재료창에서 재고를 추가해주세요</p>
+
+<div class="btnparty">
+
+<a href="/inventory/{{mat_obj.mat_dyna.mat_id}}/update/" onclick="changeScreenSize()" class="buttondelete">재료 재고창으로 이동</a>
+    </div>
+
+    </div>
+    
+    재고가 미입력 상태입니다. <br>
+    재료창에서 재고를 추가해주세요
+    <a href="/inventory/{{mat_obj.mat_dyna.mat_id}}/update/" onclick="changeScreenSize()">재료 재고 수정으로 이동</a>
+    {%elif mat_obj.mat_dyna.mat_inven|lessthan:mat_obj.dyna_mat_num%}
+    <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+    <h2>{{mat_obj.mat_dyna.mat_name}} 재고처리</h2>
+            <p><br>
+            재고가 부족합니다!
+            <br>
+            <br></p>
+
+<div class="btnparty">
+
+<button class="buttondelete" onclick="window.close();">확인</button>
+    </div>
+
+    </div>
+    {%else%}
+
+    <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+        <form method="POST">{%csrf_token%}
+    <h2>{{mat_obj.mat_dyna.mat_name}} 재고처리</h2>
+        <table class="table">
+            <colgroup>
+            
+            </colgroup>
+            <thead>
+                <tr>
+                    <td>현재재고</td>
+                    <td>필요량</td>
+                    <td>최종재고</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>{{mat_obj.mat_dyna.mat_inven}}{{mat_obj.mat_dyna.get_mat_unit_display}}</th>
+                    <th>{{mat_obj.dyna_mat_num}}{{mat_obj.mat_dyna.get_mat_unit_display}}</th>
+                    <th>{{mat_obj.mat_dyna.mat_inven|minus:mat_obj.dyna_mat_num}}{{mat_obj.mat_dyna.get_mat_unit_display}}</th>
+                </tr>
+            </tbody>
+        </table>
+<div class="btnparty">
+
+<button type="submit" class="buttondelete">확인</button>
+    </div>
+</form>
+    </div>
+<script>
+
+    </script>
+    {%endif%}
+</body>
+<script type="text/javascript">
+    function changeScreenSize() {
+        window.resizeTo(700,700)
+    }
+</script>
+</html>

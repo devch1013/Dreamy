@@ -1,0 +1,286 @@
+.all {
+    margin-left: 25px;
+    background: white;
+}
+
+.chabtn {
+    margin: 30px 0px 30px 30px;
+}
+
+.clicked {
+color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #273449;
+padding: 10px 40px;
+border-radius: 30px 30px 0px 0px;
+border: none;
+transition: all 0.4s ease 0s;
+    margin-left: -5px;
+}
+
+.unclicked {
+    color: #333!important;
+text-transform: uppercase;
+text-decoration: none;
+background: #;
+padding: 10px 40px;
+border-radius: 30px 30px 0px 0px;
+border: none;
+transition: all 0.4s ease 0s;
+}
+
+.unclicked1:hover {
+    color: #333!important;
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+    background: rgba(69,131,230,1);
+    cursor: pointer;
+}
+
+
+.unclicked1 {
+    color: #333!important;
+text-transform: uppercase;
+text-decoration: none;
+background: #;
+padding: 10px 40px;
+border-radius: 30px 30px 0px 0px;
+border: none;
+transition: all 0.4s ease 0s;
+    margin-left: -5px;
+}
+
+.unclicked1:hover {
+    color: #333!important;
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+    background: rgba(69,131,230,1);
+    cursor: pointer;
+}
+
+.unclicked2 {
+    color: #333!important;
+text-transform: uppercase;
+text-decoration: none;
+background: #;
+padding: 10px 40px;
+border-radius: 30px 30px 0px 0px;
+border: none;
+transition: all 0.4s ease 0s;
+    margin-left: -5px;
+}
+
+.unclicked2:hover {
+    color: #333!important;
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+    background: rgba(69,131,230,1);
+    cursor: pointer;
+}
+
+.unclicked3 {
+    color: #333!important;
+text-transform: uppercase;
+text-decoration: none;
+background: #;
+padding: 10px 40px;
+border-radius: 30px 30px 0px 0px;
+border: none;
+transition: all 0.4s ease 0s;
+    margin-left: -5px;
+}
+
+.unclicked3:hover {
+    color: #333!important;
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+    background: rgba(69,131,230,1);
+    cursor: pointer;
+}
+
+
+
+.classtable {
+    width: 100%;
+    top: 0;
+    left: 0;
+    font-size:14px;
+}
+
+.classtable .table td, .table th .table tr{
+    padding:0;
+}
+
+.classtable .table td {
+    padding:2px 0px 2px 0px;
+}
+
+div.dataTables_length select{
+    width:auto;
+    display:inline-block;
+}
+
+div.dataTables_length{
+    width:auto;
+    float: left;
+}
+div.dataTables_info{
+    width:auto;
+    float: left;
+}
+
+.page-item.active .page-link{
+    z-index:1;color:#fff; }
+
+.page-item.active {
+    background-color:#273449;
+}
+.page-link{color:#273449}
+
+.table th{
+  color: #fff;
+  line-height: 1;
+  background-color: #273449;
+  margin:0;
+}
+
+.table td{
+  font-size: 15px;
+  color: #313131;
+  line-height: 2;
+    padding: 2px 0px 2px 0px;
+}
+
+.table {
+border-radius: 10px;
+overflow: hidden;
+  box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  
+}
+
+.table th, td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.classtable-body {
+    display: table;
+}
+
+.buttonadd {
+color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #273449;
+padding: 10px;
+border-radius: 50px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+margin: 2px;
+}
+
+.buttonadd:hover {
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+    background: linear-gradient(45deg, rgba(20,195,154,1) 0%, rgba(47,159,196,1) 51%, rgba(69,131,230,1) 100%);
+}
+
+.button3 {
+color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #273449;
+padding: 2px 4px 2px 4px;
+border-radius: 10px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+float: right;
+    margin-right: 5px;
+}
+
+.button3:hover {
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+    background: linear-gradient(45deg, rgba(20,195,154,1) 0%, rgba(47,159,196,1) 51%, rgba(69,131,230,1) 100%);
+}
+
+.button2 {
+color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #ff0000;
+padding: 3px;
+border-radius: 10px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+    margin-right: 5px;
+    float: right;
+
+}
+
+.button2:hover {
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+    background: linear-gradient(45deg, rgba(20,195,154,1) 0%, rgba(47,159,196,1) 51%, rgba(69,131,230,1) 100%);
+}
+
+.table th, td{
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #333;
+  padding: 5px;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table tr:hover {background-color: #ddd;}
+
+
+
+
+.dataTables_length {
+    margin-bottom: 10px;
+}
+
+select {
+    border-radius: 5px;
+        padding: 3px 5px;
+}
+
+input {
+    border-radius: 5px;
+        padding: 3px 5px;
+}
+
+ul.listsb li.active {
+     background: #273449;
+ color: #fff !important;
+}
+
+ul.listsb li.active2 {
+  background: linear-gradient(45deg, rgba(20,195,154,1) 0%, rgba(47,159,196,1) 51%, rgba(69,131,230,1) 100%) !important;
+    color: #000 !important;
+}

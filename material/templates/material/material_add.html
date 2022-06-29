@@ -1,0 +1,91 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>수정</title>
+    <link rel=stylesheet type="text/css" href="{%static 'material/materequipadd.css'%}">
+</head>
+
+<body>
+
+    <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+    <h2>재료/도구 추가</h2>
+   <form class="addclass"  method="POST">{% csrf_token %}
+
+            <div class="mename">
+            <label>재료<input type="radio" name="category" class="menameupd1" checked="checked" value="재료"></label>
+            <label>도구<input type="radio" name="category" class="menameupd" value="도구"></label>
+            </div>
+            <div class="mename">
+            <label>이름</label>
+           <input type="text" name="mat_name" class="menameupd" placeholder="이름을 입력하세요...">{% if messages %}
+{% for message in messages %}
+<div class="alert">
+        <p>{{ message.message }}</p>
+</div>
+{% endfor %}
+{% endif %}
+            </div>
+        <br>
+              <div class="meshop">
+            <label>공급업체</label>
+           <input type="text" name="mat_shop" class="meshopupd" placeholder="공급업체를 입력하세요...">
+            </div>
+        <br>
+      <div class="cate">
+            <label>주문링크</label>
+        <input type="text" name="mat_link" class="cateupd" placeholder="주문링크를 입력하세요...">
+            </div>
+        <br>
+            <div class="meprice">
+            <label>공급가</label>
+           <input type="text" name="mat_price" class="mepriceupd" placeholder="공급가를 입력하세요...">
+            </div>
+        <br>
+            <div class="mehous">
+            <label>창고위치</label>
+           <input type="text" name="mat_loc" class="mehousupd" placeholder="창고위치를 입력하세요...">
+            </div>
+        <br>
+        <div class="cate">
+            <label>재고수량</label>
+        <input type="text" name="mat_inven" class="cateupd" placeholder="재고수량을 입력하세요...">
+            </div>
+        <br>
+        <div class="cate">
+            <label>단위</label>
+        <select name="mat_unit">
+            <option value="mm">mm</option>
+            <option value="m">m</option>
+            <option value="개">개</option>
+            <option value="m2">m<sup>2</sup></option>
+            <option value="g">g</option>
+        </select>
+            <br>
+            <div class="cate">
+            <label>메모</label>
+        <input type="text" name="mat_memo" class="cateupd" placeholder="메모를 입력하세요...">
+            </div>
+            
+            </div>
+            <br>
+
+          <button type="submit" class="button3">추가</button>
+
+
+         </form>
+     </div>
+
+
+
+        
+</body>
+</html>
+<script>
+ window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+</script>

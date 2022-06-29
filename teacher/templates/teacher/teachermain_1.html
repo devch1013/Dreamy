@@ -1,0 +1,49 @@
+{%extends 'base/sidebar_1.html'%}
+{%block content %}
+{%load static%}
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{%static 'teacher/teachermain.css'%}">
+</head>
+<body>
+<div class="container">
+    <h2>강사</h2>
+    <div class="smallcont">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="강사를 검색하세요..." title="Type in a name">
+   
+     <div class="button_cont" align="center"><a class="button" href="create/" onclick="window.open('create/', '강사추가', 'width=700 height=700'); return false">강사추가</a></div>
+    </div>
+    <ul id="myUL" class="cont1">
+      {% for i in tea_obj %}
+      <li><a href="{{i.tea_id}}">{{i.tea_name}}</a></li>
+      {%endfor%}
+    </ul>
+        </div>
+    
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+    
+
+</script>
+
+</body>
+</html>
+{%endblock%}

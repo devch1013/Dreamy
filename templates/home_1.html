@@ -1,0 +1,123 @@
+{%extends "base/sidebar_1.html"%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="ko" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>ONDREAM EDUCATION</title>
+        <link href="{%static 'home_1.css'%}" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	</head>
+	<body>
+        <div class="secondrow">
+        <div class="todaysclass">
+            <div class="today">
+            <h1>오늘의 수업</h1>
+                </div>
+            <div class="table-container">
+         <table>
+              <thead>
+                <tr>
+          <th width="15%" class='fixedHeader'>학교</th>
+          <th width="15%" class='fixedHeader'>구분</th>
+          <th width="15%" class='fixedHeader'>활동반</th>
+          <th width="20%" class='fixedHeader'>수업</th>
+          <th width="10%" class='fixedHeader'>강사</th>
+          <th width="10%" class='fixedHeader'>인원</th>
+          <th width="10%" class='fixedHeader'>장소</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for i in class_obj%}
+                <tr>
+                    <td>{{i.class_sch|default_if_none:""}}</td>
+                    <td>{{i.class_minicate|default_if_none:""}}</td>
+                    <td>{{i.class_cate|default_if_none:""}}</td>
+                    <td>{{i.class_stat|default_if_none:""}}</td>
+                    <td>{{i.class_tea|default_if_none:""}}</td>
+                    <td>{{i.class_stunum|default_if_none:""}}</td>
+                    <td>{{i.class_place|default_if_none:""}}</td>
+                </tr>
+                {%endfor%}
+             </tbody>
+         </table>
+        </div>
+            </div>
+        <div class="statistics">
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        </div>
+            </div>
+            
+        <div class="firstrow">
+          <form method="POST">{%csrf_token%}
+        <div class="time">
+            <h1>절대 까먹지마!</h1>
+        <button name="save_memo" value="todo" type="submit">저장</button>
+            <h2>마지막 저장. {{memo.todo_memo_time|default_if_none:""}} {{memo.todo_memo_user|default_if_none:""}}</h2>
+        <p><textarea name="todo_memo" placeholder="입력하세요...">{{memo.todo_memo|default_if_none:""}}</textarea></p>
+</div>
+        <div class="notices">
+        <h1>주문해주세요~</h1>
+        <button name="save_memo" value="order" type="submit">저장</button>
+            <h2>마지막 저장. {{memo.order_memo_time|default_if_none:""}} {{memo.order_memo_user|default_if_none:""}}</h2>
+        <p><textarea name='order_memo'>{{memo.order_memo|default_if_none:""}}</textarea></p>
+        </div>
+      </form>
+        <div class="todaysteacher">
+        <h1>오늘 방문하는 강사는?</h1>
+        <ul class="name-aligning">
+          {% for i in tea_obj%}
+        <li>{{i.tea_name}}</li>
+    {%endfor%}
+        
+        </ul>
+        </div>
+        </div>
+      
+    
+    <script>
+window.onload = function () {
+today = new Date();
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "수업현황",
+	},
+    axisX:{
+		valueFormatString: "DD MMM",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
+    },
+	axisY:{
+		includeZero: false
+	},
+	data: [{        
+		type: "line",
+        xValueFormatString: "DD-mm",
+		dataPoints: [
+			{ x: new Date().setDate(today.getDate()-3), y: 20 },
+			{ x: new Date().setDate(today.getDate()-2), y: 20 },
+			{ x: new Date().setDate(today.getDate()-1), y: 15 },
+			{ x: today, y: 17 },
+			{ x: new Date().setDate(today.getDate()+1), y: 19 },
+			{ x: new Date().setDate(today.getDate()+2), y: 22 },
+			{ x: new Date().setDate(today.getDate()+3), y: 17 },
+		]
+	}]
+});
+chart.render();
+
+};
+</script>
+</body>
+</html>
+
+{%endblock%}

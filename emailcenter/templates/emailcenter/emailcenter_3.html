@@ -1,0 +1,205 @@
+{%extends "base/sidebar_1.html"%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>이메일센터</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<link rel="stylesheet" type="text/css" href="{%static 'email/emailcenter_3.css'%}">
+            <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
+
+</head>
+<body>
+
+
+	<div class="container-contact100">
+<div class="sidebar">
+    <button id="myBtn" class="search">이메일검색</button>
+    <a href="/email/email1/">
+        <div class="first">
+            수업계획서
+        </div>
+      </a>
+        <br>
+        <a href="/email/email2/">
+        <div class="second">
+        강사서류
+        </div>
+        </a>
+        <br>
+        
+         <div class="third">
+            정산서류
+        </div>
+
+        <br>
+        <a href="/email/email4/">
+        <div class="fourth">
+        자유양식
+        </div>
+        </a>
+        </div>
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					이메일 - 정산서류
+				</span>
+                <div class="form">
+                    <h2>받는 사람:</h2> <div class="wrap-input1000 validate-input" data-validate="Name is required">
+          <input class="input100" type="text" name="email_receiver" placeholder="ex) seohyun@ice.go.kr">
+          <span class="focus-input100-1"></span>
+          <span class="focus-input100-2"></span>
+        </div>
+                </div>
+                <div class="form">
+                    <h2>제목:</h2> <div class="wrap-input10000 validate-input" data-validate="Name is required">
+          <input class="input100" type="text" name="email_title" value="(학교) (구분) 수업계획안 보내드립니다 (온드림에듀)" placeholder="제목을 적으세요...">
+          <span class="focus-input100-1"></span>
+          <span class="focus-input100-2"></span>
+        </div></div>
+                <div class="form2">
+                    <h3>내용:</h3><div class="wrap-input100 validate-input" data-validate = "Message is required">
+          <textarea class="input100" name="email_content"  placeholder="이메일 내용을 적으세요...">
+안녕하세요 선생님,
+                    
+(학교) (구분) 정산서류 보내드립니다.
+                    
+감사합니다, 좋은 하루 보내세요~:)
+                    
+온드림에듀 드림
+
+
+
+                        
+|► 체험활동의 모든 것, 온듀 ◄
+|
+| ☎ 010-3937-0741
+| 
+| ✉ ondreamedu@gmail.com
+|              
+| ⊛ www.ondreamedu.org
+                        
+                    </textarea>
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+                    </div>
+                <div class="form3">
+                <table>
+                <tr>
+                <th><input class="check" type="checkbox">사업자등록증(온듀)</th>
+                <th><input class="check" type="checkbox">사업자등록증(드림아트)</th>
+                </tr>
+                    <tr>
+                <th><input class="check" type="checkbox">통장사본(온듀)</th>
+                <th><input class="check" type="checkbox">통장사본(드림아트)</th>
+                </tr> 
+                    <tr>
+                <th><input class="check" type="checkbox">사업자등록증(미래아카데미)</th>
+                <th><input class="check" type="checkbox">통장사본(미래아카데미)</th>
+                </tr> 
+                    <tr>
+                <th><input type="file"></th>
+                <th><input type="file"></th>
+                </tr> 
+                    <tr>
+                <th><input type="file"></th>
+                <th><input type="file"></th>
+                </tr> 
+                </table>
+                </div>
+                
+                <div class="submit">
+                <button class="send">보내기</button>
+                </div>
+    
+			</form>
+		</div>
+	</div>
+
+<!-- Trigger/Open The Modal -->
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h1>이메일 검색하기</h1> <br>
+    <div class="searchfilter">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">        
+            </div>
+    <div class="searchlist">
+<ul id="myUL">
+  <li class="email"><input type="text" value="이메일" id="myInput2" class="inputman"><h1>학교 - 이름</h1><button onclick="myFunction2()" onmouseout="outFunc()">
+  <span id="myTooltip" class="Tool">복사</span>
+  </button></li>
+    <li class="email"><input type="text" value="이메일" id="myInput2" class="inputman"><h1>학교 - 이름</h1><button onclick="myFunction2()" onmouseout="outFunc()">
+  <span id="myTooltip" class="Tool">복사</span>
+  </button></li>
+    <li class="email"><input type="text" value="이메일" id="myInput2" class="inputman"><h1>학교 - 이름</h1><button onclick="myFunction2()" onmouseout="outFunc()">
+  <span id="myTooltip" class="Tool">복사</span>
+  </button></li>
+</ul>
+    </div>
+    </div>
+    </div>
+
+
+  
+    
+<script>
+
+
+    // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+    
+function myFunction2() {
+  var copyText = document.getElementById("myInput2");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = " 복사됨: " + copyText.value;
+}
+
+function outFunc() {
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "복사";
+}
+
+</script>
+
+</body>
+</html>
+{%endblock%}

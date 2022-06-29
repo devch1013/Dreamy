@@ -1,0 +1,81 @@
+{%extends 'base/sidebar_1.html'%}
+{%load static%}
+<!DOCTYPE html>
+{%block content%}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
+	<title>수업</title>
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
+    <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{%static 'material/materequip.css'%}">
+</head>
+<body>
+    <div class=btnnn>
+    <div class="button_cont" align="center"><a class="buttonadd" href="create/" onclick="window.open('create/', '재료추가', 'width=500 height=500'); return false">재료추가</a></div>
+    
+        </div>
+        
+
+    <div class="classtable">
+		<table class="table table-striped table-bordered mydatatable" style="width:100%">
+        <colgroup>
+       <col span="1" style="width: 6%;">
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 10%;">
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 20%;">
+        </colgroup>
+        <thead>
+				<tr role="row"><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="구분: activate to sort column ascending" style="width: 37px;">구분</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 37px;">이름</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 37px;">재고량</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="공급업체: activate to sort column ascending" style="width: 16px;">공급업체</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="공급가: activate to sort column ascending" style="width: 16px;">공급가</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="위치: activate to sort column ascending" style="width: 20px;">위치</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="진행: activate to sort column ascending" style="width: 28px;">진행</th></tr>
+			</thead>
+    
+        <tbody>
+		
+		
+            {% for i in mat_obj %}
+            <tr role="row" {%if forloop.counter|divisibleby:"2" %}class="odd" {%else%} class="even" {%endif%}>
+        
+              
+              <td>{{ i.category}}</td>
+              <td>{{i.mat_name|default_if_none:""}}</td>
+              <td>{{i.mat_inven|default_if_none:""}}{{i.get_mat_unit_display|default_if_none:""}}</td>
+              
+              <td><a href="{{i.mat_link}}">{{i.mat_shop|default_if_none:""}}</a></td>
+              <td>{{i.mat_price|default_if_none:""}}</td>
+              <td>{{i.mat_loc|default_if_none:""}}</td>
+              <td>{{i.mat_inven|default_if_none:""}}
+              
+         
+
+              <a class="button2" href="{{i.mat_id}}/deletem/" target="popup" onclick="window.open('{{i.mat_id}}/delete/', '재료삭제', 'width=500 height=500'); return false">삭제</a>
+              <a class="button3" href="{{i.mat_id}}/updatem/" target="popup" onclick="window.open('{{i.mat_id}}/update/', '진행상황', 'width=500 height=500'); return false" >수정</a></td>
+            </tr>
+            {%endfor%}
+					
+            
+            </tbody>
+            
+			<tfoot>
+				<tr><th rowspan="1" colspan="1">구분</th><th rowspan="1" colspan="1">이름</th><th rowspan="1" colspan="1">단위</th><th rowspan="1" colspan="1">공급업체</th><th rowspan="1" colspan="1">공급가</th><th rowspan="1" colspan="1">위치</th><th rowspan="1" colspan="1">진행</th></tr>
+			</tfoot>
+		</table>
+
+    </div>
+    </div>
+    
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  	<script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  	<script src="http://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  	<script>
+  		$('.mydatatable').DataTable();
+  	</script>
+</body>
+</html>
+{%endblock%}

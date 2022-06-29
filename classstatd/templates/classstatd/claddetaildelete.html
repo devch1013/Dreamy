@@ -1,0 +1,36 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>수정</title>
+    <link rel='stylesheet' type="text/css" href="{%static 'class_data/claddetaildelete.css'%}">
+
+
+</head>
+
+<body>
+    {%if mat_obj == None %}
+    삭제되었습니다.
+    {%else%}
+
+    <div class="main">
+        <button class="button2" type="button" 
+        onclick="window.open('', '_self', ''); window.close();" id="2">X</button>
+    <h2>삭제하시겠습니까?</h2>
+        <p>삭제되는 내용: {{mat_obj.mat_statkey.mat_name}}</p>
+<div class="btnparty">
+<form method="POST">{%csrf_token%}
+          <button type="submit" class="buttondelete" onclick="closeWin()">삭제</button>
+        <button class="button3" onclick="window.close();">취소</button>
+    </form>
+    </div>
+    </div>
+{%endif%}
+</body>
+<script>
+ window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+    </script>
+</html>

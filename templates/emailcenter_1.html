@@ -1,0 +1,99 @@
+{%extends "base/sidebar_1.html"%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>이메일센터</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<link rel="stylesheet" type="text/css" href="{%static 'emailcenter_1.css'%}">
+
+</head>
+<body>
+
+
+	<div class="container-contact100">
+<div class="sidebar">
+        <div class="first">
+            수업계획서
+        </div>
+        <br>
+        <div class="second">
+        강사서류
+        </div>
+        <br>
+         <div class="third">
+            정산서류
+        </div>
+        <br>
+        <div class="fourth">
+        자유양식
+        </div>
+        
+        </div>
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					이메일 - 수업계획서
+				</span>
+                <div class="form">
+                    <h2>받는 사람:</h2> <div class="wrap-input1000 validate-input" data-validate="Name is required">
+					<input class="input100" type="text" name="name" placeholder="ex) seohyun@ice.go.kr">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+                </div>
+                <div class="form">
+                    <h2>제목:</h2> <div class="wrap-input10000 validate-input" data-validate="Name is required">
+					<input class="input100" type="text" name="name" placeholder="제목을 적으세요...">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div></div>
+                <div class="form2">
+                    <h3>내용:</h3><div class="wrap-input100 validate-input" data-validate = "Message is required">
+					<textarea class="input100" name="message" placeholder="이메일 내용을 적으세요..."></textarea>
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+                    </div>
+                <div class="form3">
+                <table>
+                <tr>
+                <th><input name="file[]" type="file"></th>
+                <th><input name="file[]" type="file"></th>
+                </tr>
+                    <tr>
+                <th><input name="file[]" type="file"></th>
+                <th><input name="file[]" type="file"></th>
+                </tr> 
+                    <tr>
+                <th><input name="file[]" type="file"></th>
+                <th><input name="file[]" type="file"></th>
+                </tr> 
+                    <tr>
+                <th><input name="file[]" type="file"></th>
+                <th><input name="file[]" type="file"></th>
+                </tr> 
+                    <tr>
+                <th><input name="file[]" type="file"></th>
+                <th><input name="file[]" type="file"></th>
+                </tr> 
+                </table>
+                </div>
+                
+                <div class="submit">
+                <button type="submit" class="send">보내기</button>
+                </div>
+    
+			</form>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
+{%endblock%}
